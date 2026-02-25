@@ -1,26 +1,527 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="tr">
 <head>
-    <title>Mikobakteri Sempozyumu 2026</title>
-    <meta charset="UTF-8">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f6f9;
-            margin-top: 100px;
-        }
-        h1 {
-            color: #1e3a8a;
-        }
-        p {
-            font-size: 20px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mikobakteri Sempozyumu 2026 | Malatya</title>
+  <meta name="description" content="Mikobakteri Sempozyumu 2026 — Malatya. Bilimsel program, bildiri gönderimi, kayıt ve duyurular." />
+  <style>
+    :root{
+      --bg:#070A12;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+      --line:rgba(255,255,255,.14);
+      --accent:#7C3AED;     /* mor */
+      --accent2:#22C55E;    /* yeşil */
+      --accent3:#38BDF8;    /* mavi */
+      --shadow:0 20px 60px rgba(0,0,0,.45);
+      --r:18px;
+      --max:1100px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 20% 15%, rgba(124,58,237,.30), transparent 60%),
+        radial-gradient(900px 500px at 80% 20%, rgba(56,189,248,.22), transparent 60%),
+        radial-gradient(900px 600px at 55% 85%, rgba(34,197,94,.18), transparent 60%),
+        radial-gradient(1200px 700px at 50% 50%, rgba(255,255,255,.06), transparent 60%),
+        linear-gradient(180deg, #04050A 0%, #070A12 50%, #04050A 100%);
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(14px);
+      background:linear-gradient(180deg, rgba(7,10,18,.78), rgba(7,10,18,.40));
+      border-bottom:1px solid var(--line);
+    }
+    .navinner{display:flex; align-items:center; justify-content:space-between; gap:14px; max-width:var(--max); margin:0 auto; padding:14px 24px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:750; letter-spacing:.2px}
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      background:linear-gradient(135deg, rgba(124,58,237,.95), rgba(56,189,248,.85));
+      box-shadow:0 10px 25px rgba(124,58,237,.25);
+      display:grid; place-items:center;
+    }
+    .logo svg{opacity:.95}
+    .navlinks{display:flex; gap:14px; align-items:center; color:var(--muted); font-weight:600; font-size:14px}
+    .navlinks a{padding:10px 10px; border-radius:12px; text-decoration:none; border:1px solid transparent}
+    .navlinks a:hover{background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.10); color:var(--text)}
+    .ctaRow{display:flex; gap:10px; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:11px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      box-shadow:0 8px 20px rgba(0,0,0,.18);
+      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.22)}
+    .btn.primary{
+      border-color:rgba(124,58,237,.55);
+      background:linear-gradient(135deg, rgba(124,58,237,.95), rgba(56,189,248,.70));
+      box-shadow:0 18px 45px rgba(124,58,237,.22);
+    }
+    .btn.primary:hover{border-color:rgba(124,58,237,.75)}
+    .btn.good{
+      border-color:rgba(34,197,94,.50);
+      background:linear-gradient(135deg, rgba(34,197,94,.92), rgba(56,189,248,.45));
+    }
+    .btn svg{width:16px;height:16px}
+    .hero{padding:58px 0 18px}
+    .heroGrid{display:grid; grid-template-columns:1.25fr .75fr; gap:22px; align-items:stretch}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px; border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+    }
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--accent3); box-shadow:0 0 0 6px rgba(56,189,248,.12)}
+    h1{margin:14px 0 10px; font-size:48px; line-height:1.08; letter-spacing:-.6px}
+    .sub{margin:0; color:var(--muted); font-size:18px; line-height:1.55; max-width:62ch}
+    .heroBtns{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+    .panel{
+      border-radius:var(--r);
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      box-shadow:var(--shadow);
+    }
+    .side{
+      padding:18px;
+      display:flex; flex-direction:column; gap:12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .side:before{
+      content:"";
+      position:absolute; inset:-120px -120px auto auto;
+      width:260px; height:260px; border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, rgba(124,58,237,.35), transparent 60%);
+      filter:blur(0px);
+      pointer-events:none;
+    }
+    .sideTitle{font-weight:800; letter-spacing:.2px}
+    .pillRow{display:flex; flex-wrap:wrap; gap:8px}
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      color:var(--muted);
+      font-weight:700;
+      font-size:12px;
+    }
+    .stats{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .stat{
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.18);
+    }
+    .stat .k{color:var(--muted2); font-size:12px; font-weight:700}
+    .stat .v{font-size:18px; font-weight:850; margin-top:6px}
+    .hr{height:1px; background:var(--line); margin:10px 0}
+    .countdown{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+      margin-top:2px;
+    }
+    .cdBox{
+      padding:12px 10px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      text-align:center;
+    }
+    .cdNum{font-size:22px; font-weight:900}
+    .cdLab{font-size:11px; color:var(--muted2); font-weight:800; letter-spacing:.6px; text-transform:uppercase}
+    section{padding:22px 0}
+    .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .card{
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      box-shadow:0 10px 30px rgba(0,0,0,.22);
+      height:100%;
+    }
+    .card h3{margin:2px 0 8px; font-size:16px; letter-spacing:-.2px}
+    .card p{margin:0; color:var(--muted); line-height:1.55; font-size:14px}
+    .card .ic{
+      width:38px;height:38px;border-radius:14px; display:grid; place-items:center;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      margin-bottom:10px;
+    }
+    .secTitle{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:10px}
+    .secTitle h2{margin:0; font-size:20px; letter-spacing:-.2px}
+    .secTitle .hint{color:var(--muted2); font-size:13px; font-weight:700}
+    .list{
+      display:grid; grid-template-columns:1fr 1fr; gap:14px;
+    }
+    .item{
+      padding:14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    .item b{display:block; margin-bottom:6px}
+    .item span{color:var(--muted); font-size:14px; line-height:1.5}
+    .footer{
+      padding:28px 0 50px;
+      color:var(--muted2);
+      font-size:13px;
+    }
+    .footer .fgrid{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap}
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:9px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      color:var(--muted);
+      font-weight:700;
+    }
+    .small{font-size:12px;color:var(--muted2)}
+    .muted{color:var(--muted)}
+    .notice{
+      padding:14px;
+      border-radius:18px;
+      border:1px dashed rgba(56,189,248,.35);
+      background:rgba(56,189,248,.06);
+      color:rgba(255,255,255,.84);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .sp{height:10px}
+    @media (max-width: 960px){
+      h1{font-size:40px}
+      .heroGrid{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .list{grid-template-columns:1fr}
+      .navlinks{display:none}
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Mikobakteri Sempozyumu 2026</h1>
-    <p>Malatya</p>
-    <p>Detaylar yakında...</p>
+  <div class="nav">
+    <div class="navinner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M7.5 15.5c2.6 2.6 6.8 2.6 9.4 0s2.6-6.8 0-9.4-6.8-2.6-9.4 0-2.6 6.8 0 9.4Z" stroke="white" opacity=".9" stroke-width="1.6"/>
+            <path d="M8.8 10.2h6.4M10.2 8.8v6.4" stroke="white" opacity=".9" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-size:14px; font-weight:850;">Mikobakteri Sempozyumu 2026</div>
+          <div class="small">Malatya • Türkiye</div>
+        </div>
+      </div>
+
+      <div class="navlinks">
+        <a href="#hakkinda">Hakkında</a>
+        <a href="#tarihler">Önemli Tarihler</a>
+        <a href="#program">Program</a>
+        <a href="#iletisim">İletişim</a>
+      </div>
+
+      <div class="ctaRow">
+        <a class="btn good" href="#bildiri" title="Bildiri gönderimi">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 7h10M7 12h10M7 17h6" stroke="white" opacity=".9" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Bildiri
+        </a>
+        <a class="btn primary" href="#kayit" title="Kayıt">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm7 9a7 7 0 0 0-14 0" stroke="white" opacity=".9" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Kayıt
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="heroGrid">
+        <div class="panel" style="padding:22px 22px 20px;">
+          <div class="kicker"><span class="dot"></span> Bilimsel Buluşma • 2026 • Malatya</div>
+          <h1>Mikobakteri Sempozyumu 2026</h1>
+          <p class="sub">
+            Mikobakteriyoloji alanında güncel gelişmeler, klinik uygulamalar ve laboratuvar yaklaşımları için
+            ulusal düzeyde güçlü bir bilimsel platform.
+          </p>
+
+          <div class="heroBtns">
+            <a class="btn primary" href="#kayit">Kayıt / Katılım</a>
+            <a class="btn good" href="#bildiri">Bildiri Gönderimi</a>
+            <a class="btn" href="#program">Bilimsel Program</a>
+            <a class="btn" href="#duyuru">Duyurular</a>
+          </div>
+
+          <div class="sp"></div>
+          <div class="notice" id="duyuru">
+            <b>Not:</b> Bu sayfa “taslak”tır. Tarihler, kurullar ve içerikler netleştikçe güncellenecektir.
+            İstersen “EasyChair (çift-kör)”, program PDF’i ve sponsorluk dosyasını da buraya bağlarız.
+          </div>
+        </div>
+
+        <aside class="panel side">
+          <div class="sideTitle">Hızlı Bilgi</div>
+          <div class="pillRow">
+            <div class="pill">Çift-kör bildiri</div>
+            <div class="pill">EasyChair</div>
+            <div class="pill">Klinik & Laboratuvar</div>
+            <div class="pill">Malatya</div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="k">Şehir</div>
+              <div class="v">Malatya</div>
+            </div>
+            <div class="stat">
+              <div class="k">Yıl</div>
+              <div class="v">2026</div>
+            </div>
+            <div class="stat">
+              <div class="k">Bildiri Sistemi</div>
+              <div class="v">EasyChair</div>
+            </div>
+            <div class="stat">
+              <div class="k">Değerlendirme</div>
+              <div class="v">Çift-kör</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="muted" style="font-weight:800; font-size:13px;">Sempozyuma Kalan</div>
+          <div class="countdown" aria-label="Geri sayım">
+            <div class="cdBox"><div class="cdNum" id="cd-d">—</div><div class="cdLab">Gün</div></div>
+            <div class="cdBox"><div class="cdNum" id="cd-h">—</div><div class="cdLab">Saat</div></div>
+            <div class="cdBox"><div class="cdNum" id="cd-m">—</div><div class="cdLab">Dakika</div></div>
+            <div class="cdBox"><div class="cdNum" id="cd-s">—</div><div class="cdLab">Saniye</div></div>
+          </div>
+
+          <div class="small" style="margin-top:8px;">
+            Geri sayım tarihi: <span id="cd-date">2026-10-15 09:00</span> (yerel saat)
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <section id="hakkinda">
+      <div class="secTitle">
+        <h2>Öne Çıkanlar</h2>
+        <div class="hint">Tek sayfa • hızlı • etkili</div>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+              <path d="M12 2v6M8.5 4.5h7" stroke="white" opacity=".85" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M6 22h12M8 22V10a4 4 0 0 1 8 0v12" stroke="white" opacity=".85" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Bilimsel İçerik</h3>
+          <p>Klinik mikobakteriyoloji, tanı algoritmaları, direnç ve epidemiyoloji ekseninde güncel oturumlar.</p>
+        </div>
+
+        <div class="card">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+              <path d="M7 7h10v10H7z" stroke="white" opacity=".85" stroke-width="1.8"/>
+              <path d="M4 12h3M17 12h3M12 4v3M12 17v3" stroke="white" opacity=".85" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Çift-Kör Bildiri</h3>
+          <p>EasyChair üzerinden çift-kör değerlendirme; hakem süreci ve şeffaf takip akışı.</p>
+        </div>
+
+        <div class="card">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+              <path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" stroke="white" opacity=".85" stroke-width="1.8"/>
+              <path d="M9.2 10.4h5.6" stroke="white" opacity=".85" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Malatya Deneyimi</h3>
+          <p>Bilimsel programın yanında şehir deneyimi: kültür, tarih ve sosyal etkinlikler.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tarihler">
+      <div class="secTitle">
+        <h2>Önemli Tarihler</h2>
+        <div class="hint">Şimdilik taslak alanlar</div>
+      </div>
+      <div class="list">
+        <div class="item">
+          <b>Bildiri Açılışı</b>
+          <span><span class="muted">Tarih:</span> … / … / 2026</span>
+        </div>
+        <div class="item">
+          <b>Bildiri Son Gönderim</b>
+          <span><span class="muted">Tarih:</span> … / … / 2026</span>
+        </div>
+        <div class="item">
+          <b>Kabul Bildirimi</b>
+          <span><span class="muted">Tarih:</span> … / … / 2026</span>
+        </div>
+        <div class="item">
+          <b>Erken Kayıt Son Tarih</b>
+          <span><span class="muted">Tarih:</span> … / … / 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="program">
+      <div class="secTitle">
+        <h2>Bilimsel Program</h2>
+        <div class="hint">Program PDF’i ekleyebiliriz</div>
+      </div>
+      <div class="panel" style="padding:16px;">
+        <div class="notice">
+          <b>Program:</b> Hazır olduğunda programı PDF olarak ekleyip buradan indirtelim.
+          (İstersen “Program.pdf” yükleyip buton koyarız.)
+        </div>
+      </div>
+    </section>
+
+    <section id="bildiri">
+      <div class="secTitle">
+        <h2>Bildiri Gönderimi</h2>
+        <div class="hint">EasyChair • çift-kör</div>
+      </div>
+      <div class="panel" style="padding:16px;">
+        <div class="list">
+          <div class="item">
+            <b>EasyChair Linki</b>
+            <span>
+              Linki buraya koyacağız. Hazır olunca tek satır değişiklik yeter:
+              <span class="small"><br/>index.html içinde <code>EASYCHAIR_URL</code> alanı</span>
+            </span>
+          </div>
+          <div class="item">
+            <b>Yönergeler</b>
+            <span>Özet formatı, kelime sınırı, anahtar kelimeler ve körleme kuralları.</span>
+          </div>
+        </div>
+
+        <div class="sp"></div>
+        <a class="btn good" id="easychairBtn" href="#" target="_blank" rel="noopener">
+          Bildiri Gönder (EasyChair)
+        </a>
+        <div class="small" style="margin-top:8px; color:var(--muted2);">
+          Şimdilik devre dışı: EasyChair linkini gönderince aktif edeceğim.
+        </div>
+      </div>
+    </section>
+
+    <section id="kayit">
+      <div class="secTitle">
+        <h2>Kayıt / Katılım</h2>
+        <div class="hint">Kayıt formu ekleyebiliriz</div>
+      </div>
+      <div class="panel" style="padding:16px;">
+        <div class="list">
+          <div class="item">
+            <b>Kayıt</b>
+            <span>Online kayıt formu (Google Form / kurum formu) bağlantısı eklenebilir.</span>
+          </div>
+          <div class="item">
+            <b>Konaklama & Ulaşım</b>
+            <span>Oteller, ulaşım önerileri, sosyal program ve şehir bilgisi bölümü eklenebilir.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="iletisim">
+      <div class="secTitle">
+        <h2>İletişim</h2>
+        <div class="hint">Tek satırla güncellenir</div>
+      </div>
+      <div class="panel" style="padding:16px;">
+        <div class="list">
+          <div class="item">
+            <b>Organizasyon Sekretaryası</b>
+            <span>İsim / Birim / Telefon (isteğe bağlı)</span>
+          </div>
+          <div class="item">
+            <b>E-posta</b>
+            <span>info@… (istersen kurumsal mail)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div class="fgrid">
+        <div class="badge">
+          <span class="dot" style="background:var(--accent2); box-shadow:0 0 0 6px rgba(34,197,94,.12)"></span>
+          GitHub Pages ile yayınlandı
+        </div>
+        <div class="small">© 2026 Mikobakteri Sempozyumu • Malatya</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // === Basit geri sayım ===
+    // İstersen gerçek tarih/saat verince burayı güncelleriz.
+    const TARGET = new Date("2026-10-15T09:00:00+03:00"); // varsayım
+    const elD = document.getElementById("cd-d");
+    const elH = document.getElementById("cd-h");
+    const elM = document.getElementById("cd-m");
+    const elS = document.getElementById("cd-s");
+
+    function tick(){
+      const now = new Date();
+      let diff = TARGET - now;
+      if (diff < 0) diff = 0;
+
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff / (1000*60*60)) % 24);
+      const m = Math.floor((diff / (1000*60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      elD.textContent = String(d);
+      elH.textContent = String(h).padStart(2,"0");
+      elM.textContent = String(m).padStart(2,"0");
+      elS.textContent = String(s).padStart(2,"0");
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // EasyChair linki hazır olunca burayı aktif edeceğiz:
+    const EASYCHAIR_URL = ""; // <-- buraya link koyunca buton çalışır
+    const btn = document.getElementById("easychairBtn");
+    if (EASYCHAIR_URL){
+      btn.href = EASYCHAIR_URL;
+      btn.nextElementSibling.textContent = "EasyChair aktif.";
+    } else {
+      btn.addEventListener("click", (e)=>{ e.preventDefault(); alert("EasyChair linki henüz eklenmedi."); });
+    }
+  </script>
 </body>
 </html>
