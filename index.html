@@ -553,6 +553,51 @@
   .contactGrid{ grid-template-columns:1fr; }
   .mapBox iframe{ min-height: 340px; }
 }
+/* Tooltip: sadece afiş üzerine gelince görünür */
+.poster .frame{ position: relative; }
+
+.poster .tooltip{
+  position: absolute;
+  left: 12px;
+  right: 12px;              /* afişin enini geçmez */
+  bottom: 12px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(31,42,55,.14);
+  box-shadow: 0 18px 40px rgba(17,24,39,.14);
+  color: var(--ink);
+  font-size: 12.5px;
+  line-height: 1.55;
+  font-weight: 700;
+
+  opacity: 0;               /* <-- gizle */
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+  max-height: 62%;
+  overflow: auto;
+}
+
+/* hover veya klavye ile odaklanınca göster */
+.poster .frame:hover .tooltip,
+.poster .frame:focus-within .tooltip{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.poster .tooltip b{
+  display:block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  letter-spacing: .2px;
+  color: var(--blue);
+}
+
+
+
+
+    
   </style>
 </head>
 
