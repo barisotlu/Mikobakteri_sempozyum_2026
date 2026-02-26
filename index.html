@@ -1139,6 +1139,18 @@
     // Google Maps sürüş tarifi
     return `https://www.google.com/maps/dir/?api=1&origin=${enc(fromCity)}&destination=${enc("Malatya")}&travelmode=driving`;
   }
+  function aiAssistantLink(fromCity, mode, departDate, returnDate) {
+    const prompt = [
+      "9. Ulusal Mikobakteri Sempozyumu için Malatya ulaşım planımı optimize et.",
+      `Kalkış noktası: ${fromCity}`,
+      `Tercih edilen ulaşım türü: ${mode}`,
+      `Gidiş tarihi: ${departDate}`,
+      `Dönüş tarihi: ${returnDate || "Belirsiz"}`,
+      "Lütfen bütçe/konfor dengesine göre 3 alternatif sun.",
+      "Her alternatifte tahmini süre, dikkat edilmesi gereken noktalar ve son kilometre önerisi olsun."
+    ].join("\n");
+    return `https://chat.openai.com/?q=${enc(prompt)}`;
+  }
 
   // UI state
   const state = {
@@ -1188,6 +1200,7 @@
 
           <div class="tbBtns" style="margin-top:12px;">
             <button class="btn primary" id="tbBuild" type="button">Alternatifleri Göster</button>
+            <button class="btn secondary" id="tbAi" type="button">🤖 AI ile Plan Oluştur</button>
             <button class="btn ghost" id="tbReset" type="button">Sıfırla</button>
           </div>
 
@@ -1282,6 +1295,30 @@
         <div class="tbSmall">
           <b>Not:</b> Saat ve fiyatlar sürekli değişebilir. Linkler seni doğrudan güncel arama ekranına götürür.
         </div>
+      `;
+    });
+
+    $("tbAi").addEventListener("click", () => {
+      const from = (state.from || "").trim();
+      const depart = toISO(state.depart);
+      const ret = toISO(state.ret);
+      const out = $("tbOut");
+
+      if (!from || !state.mode || !depart) {
+        out.innerHTML = `<div class="note" style="margin-top:12px;">AI planı için <b>şehir, ulaşım türü ve geliş tarihi</b> bilgilerini doldur.</div>`;
+        return;
+      }
+
+      const aiLink = aiAssistantLink(from, state.mode, depart, ret);
+      out.innerHTML = `
+        <div class="tbLinks">
+          <div class="tbLinkBox">
+            <b>AI Ulaşım Danışmanı</b>
+            <span>Bilgilerinle hazırlanmış hazır bir prompt ile yolculuk alternatiflerini detaylıca üret.</span><br>
+            <a class="btn secondary" style="margin-top:8px;" href="${aiLink}" target="_blank" rel="noopener">AI Asistanını Aç</a>
+          </div>
+        </div>
+        <div class="tbSmall"><b>İpucu:</b> AI yanıtında valiz durumu, gece varış tercihi ve aktarma hassasiyetini de belirtirsen daha iyi sonuç alırsın.</div>
       `;
     });
   }
