@@ -1069,129 +1069,333 @@
     }
     tick();
     setInterval(tick, 1000);
-/* === Ulaşım Asistanı 2.0 === */
-.travelBox{ padding:18px; }
-.travelGrid{
-  display:grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: 16px;
-  align-items: start;
-}
+    
+// === Ulaşım Asistanı 2.0 (API'siz: yönlendirme + yerel bilgi) ===
+(() => {
+  const EVENT_START = "2026-06-04";
+  const EVENT_END   = "2026-06-05";
+  const DEST_CITY   = "Malatya";
+  const VENUE       = "İnönü Üniversitesi Turgut Özal Kongre ve Kültür Merkezi, Malatya";
+  const AIRPORT_DEST = "MLX"; // Malatya Erhaç
 
-.travelTitle{ display:flex; gap:12px; align-items:flex-start; margin-bottom: 12px; }
-.travelBadge{
-  width: 40px; height: 40px; border-radius: 14px;
-  display:grid; place-items:center;
-  background: rgba(255,255,255,.75);
-  border:1px solid rgba(31,42,55,.12);
-  box-shadow: 0 10px 20px rgba(17,24,39,.08);
-}
-.travelH{ font-weight: 950; letter-spacing: -.2px; }
-.travelSub{ color: var(--muted); font-weight: 750; font-size: 13px; margin-top:2px; line-height: 1.45; }
+  // Hızlı şehirler (ama her şehir yazılabilir)
+  const AIRPORTS = {
+    "İstanbul": ["IST", "SAW"],
+    "Ankara": ["ESB"],
+    "İzmir": ["ADB"],
+    "Diyarbakır": ["DIY"],
+    "Adana": ["COV"]
+  };
 
-.lbl{ display:block; margin: 12px 0 8px; font-weight: 900; font-size: 13px; color: var(--ink); }
-.row{ display:flex; gap:10px; }
+  const $ = (id) => document.getElementById(id);
 
-.inp{
-  width:100%;
-  padding: 12px 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(31,42,55,.14);
-  background: rgba(255,255,255,.72);
-  box-shadow: 0 8px 18px rgba(17,24,39,.06);
-  font-weight: 800;
-  outline: none;
-}
-.inp:focus{ border-color: rgba(34,40,116,.28); box-shadow: 0 12px 26px rgba(34,40,116,.10); }
+  function enc(s){ return encodeURIComponent(s); }
 
-.twoCols{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  function googleFlightsLinks(fromCity, depart, ret){
+    const known = AIRPORTS[fromCity];
+    // Bilinen şehirlerde havalimanı koduyla daha net link veriyoruz
+    if(known && known.length){
+      return known.map(code => {
+        const q = ret
+          ? `Flights from ${code} to ${AIRPORT_DEST} on ${depart} return ${ret}`
+          : `Flights from ${code} to ${AIRPORT_DEST} on ${depart}`;
+        return { label: `${code} → ${AIRPORT_DEST}`, url: `https://www.google.com/travel/flights?q=${enc(q)}` };
+      });
+    }
+    // Diğer şehirler: şehir adı ile arama
+    const q = ret
+      ? `Flights to ${DEST_CITY} (${AIRPORT_DEST}) from ${fromCity} on ${depart} return ${ret}`
+      : `Flights to ${DEST_CITY} (${AIRPORT_DEST}) from ${fromCity} on ${depart}`;
+    return [{ label: "Google Flights’ta ara", url: `https://www.google.com/travel/flights?q=${enc(q)}` }];
+  }
 
-.modeGrid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.mode{
-  cursor:pointer;
-  padding: 12px 12px;
-  border-radius: 16px;
-  border: 1px solid rgba(31,42,55,.12);
-  background: rgba(255,255,255,.62);
-  font-weight: 900;
-  display:flex; gap:10px; align-items:center; justify-content:center;
-  box-shadow: 0 8px 18px rgba(17,24,39,.06);
-}
-.mode input{ display:none; }
-.mode:has(input:checked){
-  border-color: rgba(34,40,116,.25);
-  background: linear-gradient(135deg, rgba(34,40,116,.12), rgba(255,255,255,.72));
-}
+  function googleSearchUrl(q){
+    return `https://www.google.com/search?q=${enc(q)}`;
+  }
 
-.helper{
-  margin-top: 12px;
-  display:flex; gap:10px; align-items:flex-start;
-  padding: 12px;
-  border-radius: 16px;
-  border: 1px dashed rgba(34,40,116,.25);
-  background: rgba(34,40,116,.05);
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.55;
-  font-weight: 750;
-}
-.helperDot{
-  width:10px; height:10px; border-radius: 999px; margin-top: 6px;
-  background: var(--gold);
-  box-shadow: 0 0 0 6px rgba(218,165,45,.14);
-  flex:0 0 auto;
-}
+  function mapsRouteUrl(origin, destination){
+    return `https://www.google.com/maps/dir/?api=1&origin=${enc(origin)}&destination=${enc(destination)}`;
+  }
 
-.actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
+  function mapsToUrl(destination){
+    return `https://www.google.com/maps/search/?api=1&query=${enc(destination)}`;
+  }
 
-.travelOut{
-  padding: 14px;
-  border-radius: 18px;
-  border: 1px solid rgba(31,42,55,.12);
-  background: rgba(255,255,255,.58);
-  box-shadow: 0 18px 44px rgba(17,24,39,.10);
-}
+  function fmtDate(d){
+    // yyyy-mm-dd -> dd.mm.yyyy (gösterim için)
+    if(!d) return "—";
+    const [y,m,day] = d.split("-");
+    return `${day}.${m}.${y}`;
+  }
 
-.outEmpty{ display:flex; gap:12px; align-items:flex-start; }
-.outIcon{
-  width: 40px; height: 40px; border-radius: 14px;
-  display:grid; place-items:center;
-  background: rgba(255,255,255,.75);
-  border:1px solid rgba(31,42,55,.12);
-}
-.outTitle{ font-weight: 950; }
-.outText{ margin-top:4px; color: var(--muted); font-weight: 750; line-height: 1.55; font-size: 13px; }
+  function renderResults({fromCity, mode, depart, ret, bmin, bmax}){
+    const out = $("travelOut");
+    const budgetText = (bmin || bmax)
+      ? `Bütçe hedefi: ${bmin ? bmin + " TL" : "—"} – ${bmax ? bmax + " TL" : "—"}`
+      : `Bütçe: (girersen burada gösteririm)`;
 
-.rCards{ display:grid; gap: 10px; margin-top: 6px; }
-.rCard{
-  padding: 12px;
-  border-radius: 16px;
-  border: 1px solid rgba(31,42,55,.12);
-  background: rgba(255,255,255,.72);
-  box-shadow: 0 10px 22px rgba(17,24,39,.06);
-}
-.rHead{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
-.rTitle{ font-weight: 950; }
-.rMeta{ color: var(--muted); font-weight: 800; font-size: 12px; margin-top: 6px; line-height: 1.5; }
+    // Sempozyum tarih kontrolü (kesin veri: sempozyum tarihleri)
+    let timingNote = `Sempozyum: ${fmtDate(EVENT_START)} – ${fmtDate(EVENT_END)}.`;
+    if(depart && depart > EVENT_END){
+      timingNote += ` ⚠️ Gidiş tarihiniz sempozyumdan sonra görünüyor.`;
+    }
+    if(ret && ret < EVENT_START){
+      timingNote += ` ⚠️ Dönüş tarihiniz sempozyumdan önce görünüyor.`;
+    }
+    if(ret && depart && ret < depart){
+      timingNote += ` ⚠️ Dönüş tarihi gidişten önce olamaz.`;
+    }
 
-.rBtns{ display:flex; gap:10px; flex-wrap: wrap; margin-top: 10px; }
-.rBtns a{ font-size: 12.5px; padding: 10px 12px; border-radius: 14px; }
+    // Linkler
+    const flightBtns = googleFlightsLinks(fromCity, depart, ret);
+    const busSearch  = googleSearchUrl(`${fromCity} ${DEST_CITY} otobüs bileti ${depart}`);
+    const trainSearch= googleSearchUrl(`${fromCity} ${DEST_CITY} tren seferleri ${depart}`);
+    const carRoute    = mapsRouteUrl(fromCity, DEST_CITY);
+    const venueMap    = mapsToUrl(VENUE);
 
-.miniFaq{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 12px; }
-.pill{
-  cursor:pointer;
-  border: 1px solid rgba(31,42,55,.12);
-  background: rgba(255,255,255,.65);
-  border-radius: 999px;
-  padding: 9px 12px;
-  font-weight: 900;
-  font-size: 12px;
-}
+    // Yerel ulaşım linkleri (isimle arama: daha dayanıklı)
+    const airportToVenue = mapsRouteUrl(`${DEST_CITY} Erhaç Havalimanı`, VENUE);
+    const terminalToVenue= mapsRouteUrl(`${DEST_CITY} otogar`, VENUE);
 
-@media (max-width: 980px){
-  .travelGrid{ grid-template-columns: 1fr; }
-  .modeGrid{ grid-template-columns: 1fr 1fr; }
-  .twoCols{ grid-template-columns: 1fr; }
+    // Kartları oluştur
+    const cards = [];
+
+    // Seçilen moda göre ana kart + 1-2 alternatif gösterelim
+    if(mode === "flight"){
+      cards.push({
+        title: "✈️ Uçak ile",
+        meta: [
+          `Varış havalimanı: Malatya Erhaç (${AIRPORT_DEST})`,
+          budgetText,
+          `Canlı saat/fiyat için aşağıdaki bağlantıyı açın.`
+        ],
+        buttons: flightBtns.map(b => ({text: b.label, url: b.url, kind: "secondary"}))
+          .concat([{text:"Havalimanı → Kongre Merkezi (harita)", url: airportToVenue, kind:"ghost"}])
+      });
+      cards.push({
+        title: "🚌 Alternatif: Otobüs",
+        meta: [
+          "Canlı sefer/saat/fiyat için arama sayfasına yönlendirir.",
+          budgetText
+        ],
+        buttons: [
+          {text:"Otobüs bileti ara", url: busSearch, kind:"ghost"}
+        ]
+      });
+    }
+
+    if(mode === "bus"){
+      cards.push({
+        title: "🚌 Otobüs ile",
+        meta: [
+          "Canlı sefer/saat/fiyat için arama sayfasına yönlendirir.",
+          budgetText
+        ],
+        buttons: [
+          {text:"Otobüs bileti ara", url: busSearch, kind:"secondary"},
+          {text:"Otogar → Kongre Merkezi (harita)", url: terminalToVenue, kind:"ghost"}
+        ]
+      });
+      cards.push({
+        title: "✈️ Alternatif: Uçak",
+        meta: [
+          `Varış: Malatya Erhaç (${AIRPORT_DEST})`,
+          "Canlı saat/fiyat için Google Flights açılır."
+        ],
+        buttons: flightBtns.map(b => ({text: b.label, url: b.url, kind: "ghost"}))
+      });
+    }
+
+    if(mode === "train"){
+      cards.push({
+        title: "🚆 Tren ile",
+        meta: [
+          "Tren seferleri şehirden şehre değişebilir (direkt/aktarmalı).",
+          "Canlı saat ve bilet için arama sayfasına yönlendirir.",
+          budgetText
+        ],
+        buttons: [
+          {text:"Tren seferi ara", url: trainSearch, kind:"secondary"}
+        ]
+      });
+      cards.push({
+        title: "🚌 Alternatif: Otobüs",
+        meta: ["Otobüs araması açılır.", budgetText],
+        buttons: [{text:"Otobüs bileti ara", url: busSearch, kind:"ghost"}]
+      });
+    }
+
+    if(mode === "car"){
+      cards.push({
+        title: "🚗 Özel araç ile",
+        meta: [
+          "Rota, süre ve yol durumu Google Haritalar üzerinden görülebilir.",
+          budgetText
+        ],
+        buttons: [
+          {text:"Rota oluştur (Google Maps)", url: carRoute, kind:"secondary"}
+        ]
+      });
+      cards.push({
+        title: "🚌 Alternatif: Otobüs",
+        meta: ["Otobüs araması açılır.", budgetText],
+        buttons: [{text:"Otobüs bileti ara", url: busSearch, kind:"ghost"}]
+      });
+    }
+
+    // Yerel ulaşım kartı (kullanıcının verdiği bilgi: trombüs var)
+    cards.push({
+      title: "📍 Malatya içi ulaşım (yerel)",
+      meta: [
+        "Şehir içi seçenekler: trombüs, belediye otobüsleri, minibüs/dolmuş, taksi.",
+        "Kongre merkezi konumu ve rota için haritayı açabilirsiniz."
+      ],
+      buttons: [
+        {text:"Kongre merkezi haritası", url: venueMap, kind:"ghost"},
+        {text:"Havalimanı → Kongre Merkezi", url: airportToVenue, kind:"ghost"},
+        {text:"Otogar → Kongre Merkezi", url: terminalToVenue, kind:"ghost"}
+      ]
+    });
+
+    // Üst bilgi kartı
+    const headCard = `
+      <div class="rCard">
+        <div class="rHead">
+          <div class="rTitle">Özet</div>
+          <div style="color:var(--muted); font-weight:900; font-size:12px;">${fromCity} → ${DEST_CITY}</div>
+        </div>
+        <div class="rMeta">
+          <div><b>Seçim:</b> ${modeLabel(mode)} | <b>Gidiş:</b> ${fmtDate(depart)} | <b>Dönüş:</b> ${fmtDate(ret)}</div>
+          <div style="margin-top:6px;">${timingNote}</div>
+        </div>
+      </div>
+    `;
+
+    // Kartları HTML'e dök
+    const cardsHtml = cards.map(c => {
+      const btns = (c.buttons || []).map(b => {
+        const cls = b.kind === "secondary" ? "btn secondary" : (b.kind === "primary" ? "btn primary" : "btn ghost");
+        return `<a class="${cls}" href="${b.url}" target="_blank" rel="noopener">${b.text}</a>`;
+      }).join("");
+      const meta = (c.meta || []).map(x => `<div>${x}</div>`).join("");
+      return `
+        <div class="rCard">
+          <div class="rHead">
+            <div class="rTitle">${c.title}</div>
+          </div>
+          <div class="rMeta">${meta}</div>
+          <div class="rBtns">${btns}</div>
+        </div>
+      `;
+    }).join("");
+
+    out.innerHTML = `
+      ${headCard}
+      <div class="rCards">${cardsHtml}</div>
+    `;
+  }
+
+  function modeLabel(m){
+    return m === "flight" ? "Uçak"
+      : m === "bus" ? "Otobüs"
+      : m === "train" ? "Tren"
+      : "Özel araç";
+  }
+
+  // Form bağla
+  const form = $("travelForm");
+  const resetBtn = $("travelReset");
+
+  if(form){
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const fromCity = $("fromCity").value.trim();
+      const mode = (new FormData(form).get("mode") || "flight").toString();
+      const depart = $("departDate").value;
+      const ret = $("returnDate").value;
+      const bmin = $("budgetMin").value ? Number($("budgetMin").value) : null;
+      const bmax = $("budgetMax").value ? Number($("budgetMax").value) : null;
+
+      if(!fromCity || !depart){
+        alert("Lütfen kalkış şehri ve gidiş tarihini girin.");
+        return;
+      }
+      renderResults({fromCity, mode, depart, ret, bmin, bmax});
+    });
+  }
+
+  if(resetBtn){
+    resetBtn.addEventListener("click", () => {
+      form.reset();
+      $("travelOut").innerHTML = `
+        <div class="outEmpty">
+          <div class="outIcon">✨</div>
+          <div>
+            <div class="outTitle">Hazırım</div>
+            <div class="outText">
+              Soldan bilgileri girip <b>“Önerileri Getir”</b> dediğinizde öneriler burada görünecek.
+            </div>
+          </div>
+        </div>
+      `;
+      $("fromCity").value = "";
+    });
+  }
+
+  // Mini FAQ butonları
+  document.querySelectorAll(".pill[data-q]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const q = btn.getAttribute("data-q");
+      const out = $("travelOut");
+      if(!out) return;
+
+      if(q === "airport"){
+        out.innerHTML = `
+          <div class="rCard">
+            <div class="rHead"><div class="rTitle">MLX → Kongre Merkezi</div></div>
+            <div class="rMeta">
+              <div>Havalimanından kongre merkezine en net rota için haritayı açın.</div>
+              <div>Şehir içinde ayrıca <b>trombüs</b> ve diğer toplu taşıma seçenekleri kullanılabilir.</div>
+            </div>
+            <div class="rBtns">
+              <a class="btn secondary" href="${mapsRouteUrl(`${DEST_CITY} Erhaç Havalimanı`, VENUE)}" target="_blank" rel="noopener">Haritada rota</a>
+              <a class="btn ghost" href="${mapsToUrl(VENUE)}" target="_blank" rel="noopener">Kongre merkezi haritası</a>
+            </div>
+          </div>
+        `;
+      }
+
+      if(q === "trombus"){
+        out.innerHTML = `
+          <div class="rCard">
+            <div class="rHead"><div class="rTitle">Malatya’da şehir içi ulaşım</div></div>
+            <div class="rMeta">
+              <div>Malatya’da şehir içinde <b>trombüs</b>, belediye otobüsleri, minibüs/dolmuş ve taksi seçenekleri bulunur.</div>
+              <div>En doğru güzergâh için kongre merkezini haritada açıp bulunduğunuz noktaya göre rota oluşturabilirsiniz.</div>
+            </div>
+            <div class="rBtns">
+              <a class="btn ghost" href="${mapsToUrl(VENUE)}" target="_blank" rel="noopener">Kongre merkezi haritası</a>
+            </div>
+          </div>
+        `;
+      }
+
+      if(q === "timing"){
+        out.innerHTML = `
+          <div class="rCard">
+            <div class="rHead"><div class="rTitle">Tarih önerisi</div></div>
+            <div class="rMeta">
+              <div>Sempozyum tarihleri: <b>${fmtDate(EVENT_START)} – ${fmtDate(EVENT_END)}</b>.</div>
+              <div>Ulaşım planınızı bu tarihlere göre yapmanızı öneririm (programın başlangıç/bitiş saatine göre).</div>
+              <div>En güncel saat ve fiyat için “Önerileri Getir” üzerinden uçak/otobüs/tren bağlantılarını açabilirsiniz.</div>
+            </div>
+          </div>
+        `;
+      }
+    });
+  });
+
+})();
 }
 </body>
 </html>
