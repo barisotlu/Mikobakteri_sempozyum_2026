@@ -1069,226 +1069,129 @@
     }
     tick();
     setInterval(tick, 1000);
-// =============================
-// ULAŞIM ASISTANI (offline)
-// =============================
-(function () {
-  const root = document.getElementById("travelBot");
-  if (!root) return;
+/* === Ulaşım Asistanı 2.0 === */
+.travelBox{ padding:18px; }
+.travelGrid{
+  display:grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 16px;
+  align-items: start;
+}
 
-  // Basit UI stilleri (mevcut tasarıma uyumlu)
-  const style = document.createElement("style");
-  style.textContent = `
-    .tb{ display:grid; gap:12px; }
-    .tbRow{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
-    @media (max-width: 900px){ .tbRow{ grid-template-columns:1fr; } }
-    .tbCard{
-      padding:14px; border-radius:16px;
-      border:1px solid rgba(31,42,55,.10);
-      background: rgba(255,255,255,.62);
-    }
-    .tbTitle{ font-weight:950; margin:0 0 6px; }
-    .tbSub{ color: var(--muted); font-weight:800; font-size:13px; margin:0 0 10px; }
-    .tbQ{ font-weight:900; margin:0 0 8px; }
-    .tbIn{
-      width:100%; padding:11px 12px; border-radius:14px;
-      border:1px solid rgba(31,42,55,.14);
-      background: rgba(255,255,255,.85);
-      font: inherit;
-      outline: none;
-    }
-    .tbIn:focus{ box-shadow: 0 0 0 4px rgba(34,40,116,.10); }
-    .tbBtns{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
-    .tbSmall{ color: var(--muted); font-size:12px; font-weight:800; margin-top:8px; line-height:1.5; }
-    .tbLinks{ display:grid; gap:10px; margin-top:12px; }
-    .tbLinkBox{
-      padding:12px; border-radius:14px;
-      border:1px solid rgba(31,42,55,.10);
-      background: rgba(255,255,255,.72);
-    }
-    .tbLinkBox b{ display:block; margin-bottom:4px; }
-    .tbLinkBox span{ color: var(--muted); font-size:12.5px; font-weight:800; }
-  `;
-  document.head.appendChild(style);
+.travelTitle{ display:flex; gap:12px; align-items:flex-start; margin-bottom: 12px; }
+.travelBadge{
+  width: 40px; height: 40px; border-radius: 14px;
+  display:grid; place-items:center;
+  background: rgba(255,255,255,.75);
+  border:1px solid rgba(31,42,55,.12);
+  box-shadow: 0 10px 20px rgba(17,24,39,.08);
+}
+.travelH{ font-weight: 950; letter-spacing: -.2px; }
+.travelSub{ color: var(--muted); font-weight: 750; font-size: 13px; margin-top:2px; line-height: 1.45; }
 
-  // Basit yardımcılar
-  const enc = encodeURIComponent;
-  const toISO = (d) => {
-    // input type="date" -> "YYYY-MM-DD" zaten ISO; boşsa ""
-    return (d || "").trim();
-  };
+.lbl{ display:block; margin: 12px 0 8px; font-weight: 900; font-size: 13px; color: var(--ink); }
+.row{ display:flex; gap:10px; }
 
-  // Link üreticiler
-  function googleFlightsLink(fromCityOrCode, departDate, returnDate) {
-    // Google Flights'ta en sağlam yöntem genel arama sayfasına parametreli gitmek:
-    // Burada "from" serbest metin. "MLX" veya "Malatya" ile aratıyoruz.
-    const q = `uçuş ${fromCityOrCode} Malatya ${departDate}${returnDate ? " " + returnDate : ""}`;
-    return `https://www.google.com/search?q=${enc(q)}&tbm=flm`;
-  }
-  function obiletLink(fromCity, departDate, returnDate) {
-    // obilet doğrudan deep-link her zaman stabil değil; arama sayfasına yönlendiriyoruz.
-    const q = `otobüs bileti ${fromCity} Malatya ${departDate}${returnDate ? " " + returnDate : ""} obilet`;
-    return `https://www.google.com/search?q=${enc(q)}`;
-  }
-  function tcddLink(fromCity, departDate) {
-    // TCDD e-bilet için en güvenli: resmi siteye + arama ipucu.
-    const q = `TCDD bilet ${fromCity} Malatya ${departDate}`;
-    return `https://www.google.com/search?q=${enc(q)}`;
-  }
-  function drivingDirectionsLink(fromCity) {
-    // Google Maps sürüş tarifi
-    return `https://www.google.com/maps/dir/?api=1&origin=${enc(fromCity)}&destination=${enc("Malatya")}&travelmode=driving`;
-  }
+.inp{
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(31,42,55,.14);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 8px 18px rgba(17,24,39,.06);
+  font-weight: 800;
+  outline: none;
+}
+.inp:focus{ border-color: rgba(34,40,116,.28); box-shadow: 0 12px 26px rgba(34,40,116,.10); }
 
-  // UI state
-  const state = {
-    from: "",
-    mode: "",
-    depart: "",
-    ret: ""
-  };
+.twoCols{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-  function render() {
-    root.innerHTML = `
-      <div class="tb">
-        <div class="tbCard">
-          <p class="tbTitle">Malatya Ulaşım Asistanı</p>
-          <p class="tbSub">Nereden geleceğini ve ulaşım türünü seç — sana hazır linkler çıkarayım.</p>
+.modeGrid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.mode{
+  cursor:pointer;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(31,42,55,.12);
+  background: rgba(255,255,255,.62);
+  font-weight: 900;
+  display:flex; gap:10px; align-items:center; justify-content:center;
+  box-shadow: 0 8px 18px rgba(17,24,39,.06);
+}
+.mode input{ display:none; }
+.mode:has(input:checked){
+  border-color: rgba(34,40,116,.25);
+  background: linear-gradient(135deg, rgba(34,40,116,.12), rgba(255,255,255,.72));
+}
 
-          <div class="tbRow">
-            <div>
-              <div class="tbQ">1) Nereden geliyorsun?</div>
-              <input class="tbIn" id="tbFrom" placeholder="Örn: İstanbul / Ankara / İzmir / Diyarbakır..." value="${state.from}">
-              <div class="tbSmall">Şehir adı yazman yeterli. (İstersen “IST” gibi havalimanı kodu da yazabilirsin.)</div>
-            </div>
+.helper{
+  margin-top: 12px;
+  display:flex; gap:10px; align-items:flex-start;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px dashed rgba(34,40,116,.25);
+  background: rgba(34,40,116,.05);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 750;
+}
+.helperDot{
+  width:10px; height:10px; border-radius: 999px; margin-top: 6px;
+  background: var(--gold);
+  box-shadow: 0 0 0 6px rgba(218,165,45,.14);
+  flex:0 0 auto;
+}
 
-            <div>
-              <div class="tbQ">2) Ulaşım türü</div>
-              <div class="tbBtns">
-                <button class="btn secondary" id="tbPlane" type="button">✈️ Uçak</button>
-                <button class="btn ghost" id="tbRoad" type="button">🚌/🚗 Karayolu</button>
-                <button class="btn ghost" id="tbTrain" type="button">🚆 Tren</button>
-              </div>
-              <div class="tbSmall">Seçim: <b>${state.mode ? state.mode : "—"}</b></div>
-            </div>
-          </div>
+.actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
 
-          <div style="height:8px;"></div>
+.travelOut{
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(31,42,55,.12);
+  background: rgba(255,255,255,.58);
+  box-shadow: 0 18px 44px rgba(17,24,39,.10);
+}
 
-          <div class="tbRow">
-            <div>
-              <div class="tbQ">3) Geliş tarihi</div>
-              <input class="tbIn" id="tbDepart" type="date" value="${state.depart}">
-            </div>
-            <div>
-              <div class="tbQ">4) Dönüş tarihi (opsiyonel)</div>
-              <input class="tbIn" id="tbReturn" type="date" value="${state.ret}">
-            </div>
-          </div>
+.outEmpty{ display:flex; gap:12px; align-items:flex-start; }
+.outIcon{
+  width: 40px; height: 40px; border-radius: 14px;
+  display:grid; place-items:center;
+  background: rgba(255,255,255,.75);
+  border:1px solid rgba(31,42,55,.12);
+}
+.outTitle{ font-weight: 950; }
+.outText{ margin-top:4px; color: var(--muted); font-weight: 750; line-height: 1.55; font-size: 13px; }
 
-          <div class="tbBtns" style="margin-top:12px;">
-            <button class="btn primary" id="tbBuild" type="button">Alternatifleri Göster</button>
-            <button class="btn ghost" id="tbReset" type="button">Sıfırla</button>
-          </div>
+.rCards{ display:grid; gap: 10px; margin-top: 6px; }
+.rCard{
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(31,42,55,.12);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 10px 22px rgba(17,24,39,.06);
+}
+.rHead{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.rTitle{ font-weight: 950; }
+.rMeta{ color: var(--muted); font-weight: 800; font-size: 12px; margin-top: 6px; line-height: 1.5; }
 
-          <div id="tbOut"></div>
-        </div>
-      </div>
-    `;
+.rBtns{ display:flex; gap:10px; flex-wrap: wrap; margin-top: 10px; }
+.rBtns a{ font-size: 12.5px; padding: 10px 12px; border-radius: 14px; }
 
-    // bind
-    const $ = (id) => document.getElementById(id);
-    $("tbFrom").addEventListener("input", (e) => state.from = e.target.value);
-    $("tbDepart").addEventListener("change", (e) => state.depart = e.target.value);
-    $("tbReturn").addEventListener("change", (e) => state.ret = e.target.value);
+.miniFaq{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 12px; }
+.pill{
+  cursor:pointer;
+  border: 1px solid rgba(31,42,55,.12);
+  background: rgba(255,255,255,.65);
+  border-radius: 999px;
+  padding: 9px 12px;
+  font-weight: 900;
+  font-size: 12px;
+}
 
-    $("tbPlane").addEventListener("click", () => { state.mode = "Uçak"; render(); });
-    $("tbRoad").addEventListener("click", () => { state.mode = "Karayolu"; render(); });
-    $("tbTrain").addEventListener("click", () => { state.mode = "Tren"; render(); });
-
-    $("tbReset").addEventListener("click", () => {
-      state.from = ""; state.mode = ""; state.depart = ""; state.ret = "";
-      render();
-    });
-
-    $("tbBuild").addEventListener("click", () => {
-      const from = (state.from || "").trim();
-      const depart = toISO(state.depart);
-      const ret = toISO(state.ret);
-
-      const out = $("tbOut");
-
-      if (!from) {
-        out.innerHTML = `<div class="note" style="margin-top:12px;">Lütfen önce <b>nereden geleceğini</b> yaz.</div>`;
-        return;
-      }
-      if (!state.mode) {
-        out.innerHTML = `<div class="note" style="margin-top:12px;">Lütfen <b>ulaşım türünü</b> seç.</div>`;
-        return;
-      }
-      if (!depart) {
-        out.innerHTML = `<div class="note" style="margin-top:12px;">Lütfen <b>geliş tarihini</b> seç.</div>`;
-        return;
-      }
-
-      // Linkler
-      const links = [];
-      if (state.mode === "Uçak") {
-        links.push({
-          title: "Uçuş alternatifleri (Google Flights)",
-          desc: "THY / AJet / Pegasus gibi tüm seçenekleri tek ekranda gör.",
-          url: googleFlightsLink(from, depart, ret)
-        });
-        links.push({
-          title: "Malatya Havalimanı (MLX) – bilgi",
-          desc: "Havalimanı ve ulaşım için harita.",
-          url: `https://www.google.com/maps/search/?api=1&query=${enc("Malatya Havalimanı MLX")}`
-        });
-      } else if (state.mode === "Karayolu") {
-        links.push({
-          title: "Otobüs alternatifleri (arama)",
-          desc: "Bilet siteleri ve firmalar için hızlı arama.",
-          url: obiletLink(from, depart, ret)
-        });
-        links.push({
-          title: "Araç ile yol tarifi (Google Maps)",
-          desc: "Kendi aracınla güzergâh ve süre.",
-          url: drivingDirectionsLink(from)
-        });
-      } else if (state.mode === "Tren") {
-        links.push({
-          title: "TCDD bilet arama (resmî bilgi)",
-          desc: "Sefer uygunluğunu kontrol et.",
-          url: tcddLink(from, depart)
-        });
-        links.push({
-          title: "Gerekirse karayolu alternatifi",
-          desc: "Otobüs seçeneklerini de karşılaştır.",
-          url: obiletLink(from, depart, ret)
-        });
-      }
-
-      // çıktı
-      out.innerHTML = `
-        <div class="tbLinks">
-          ${links.map(l => `
-            <div class="tbLinkBox">
-              <b>${l.title}</b>
-              <span>${l.desc}</span><br>
-              <a class="btn ghost" style="margin-top:8px;" href="${l.url}" target="_blank" rel="noopener">Aç</a>
-            </div>
-          `).join("")}
-        </div>
-        <div class="tbSmall">
-          <b>Not:</b> Saat ve fiyatlar sürekli değişebilir. Linkler seni doğrudan güncel arama ekranına götürür.
-        </div>
-      `;
-    });
-  }
-
-  render();
-})();
-    
-  </script>
+@media (max-width: 980px){
+  .travelGrid{ grid-template-columns: 1fr; }
+  .modeGrid{ grid-template-columns: 1fr 1fr; }
+  .twoCols{ grid-template-columns: 1fr; }
+}
 </body>
 </html>
