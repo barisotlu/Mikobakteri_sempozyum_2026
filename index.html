@@ -1069,6 +1069,226 @@
     }
     tick();
     setInterval(tick, 1000);
+// =============================
+// ULAŞIM ASISTANI (offline)
+// =============================
+(function () {
+  const root = document.getElementById("travelBot");
+  if (!root) return;
+
+  // Basit UI stilleri (mevcut tasarıma uyumlu)
+  const style = document.createElement("style");
+  style.textContent = `
+    .tb{ display:grid; gap:12px; }
+    .tbRow{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    @media (max-width: 900px){ .tbRow{ grid-template-columns:1fr; } }
+    .tbCard{
+      padding:14px; border-radius:16px;
+      border:1px solid rgba(31,42,55,.10);
+      background: rgba(255,255,255,.62);
+    }
+    .tbTitle{ font-weight:950; margin:0 0 6px; }
+    .tbSub{ color: var(--muted); font-weight:800; font-size:13px; margin:0 0 10px; }
+    .tbQ{ font-weight:900; margin:0 0 8px; }
+    .tbIn{
+      width:100%; padding:11px 12px; border-radius:14px;
+      border:1px solid rgba(31,42,55,.14);
+      background: rgba(255,255,255,.85);
+      font: inherit;
+      outline: none;
+    }
+    .tbIn:focus{ box-shadow: 0 0 0 4px rgba(34,40,116,.10); }
+    .tbBtns{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .tbSmall{ color: var(--muted); font-size:12px; font-weight:800; margin-top:8px; line-height:1.5; }
+    .tbLinks{ display:grid; gap:10px; margin-top:12px; }
+    .tbLinkBox{
+      padding:12px; border-radius:14px;
+      border:1px solid rgba(31,42,55,.10);
+      background: rgba(255,255,255,.72);
+    }
+    .tbLinkBox b{ display:block; margin-bottom:4px; }
+    .tbLinkBox span{ color: var(--muted); font-size:12.5px; font-weight:800; }
+  `;
+  document.head.appendChild(style);
+
+  // Basit yardımcılar
+  const enc = encodeURIComponent;
+  const toISO = (d) => {
+    // input type="date" -> "YYYY-MM-DD" zaten ISO; boşsa ""
+    return (d || "").trim();
+  };
+
+  // Link üreticiler
+  function googleFlightsLink(fromCityOrCode, departDate, returnDate) {
+    // Google Flights'ta en sağlam yöntem genel arama sayfasına parametreli gitmek:
+    // Burada "from" serbest metin. "MLX" veya "Malatya" ile aratıyoruz.
+    const q = `uçuş ${fromCityOrCode} Malatya ${departDate}${returnDate ? " " + returnDate : ""}`;
+    return `https://www.google.com/search?q=${enc(q)}&tbm=flm`;
+  }
+  function obiletLink(fromCity, departDate, returnDate) {
+    // obilet doğrudan deep-link her zaman stabil değil; arama sayfasına yönlendiriyoruz.
+    const q = `otobüs bileti ${fromCity} Malatya ${departDate}${returnDate ? " " + returnDate : ""} obilet`;
+    return `https://www.google.com/search?q=${enc(q)}`;
+  }
+  function tcddLink(fromCity, departDate) {
+    // TCDD e-bilet için en güvenli: resmi siteye + arama ipucu.
+    const q = `TCDD bilet ${fromCity} Malatya ${departDate}`;
+    return `https://www.google.com/search?q=${enc(q)}`;
+  }
+  function drivingDirectionsLink(fromCity) {
+    // Google Maps sürüş tarifi
+    return `https://www.google.com/maps/dir/?api=1&origin=${enc(fromCity)}&destination=${enc("Malatya")}&travelmode=driving`;
+  }
+
+  // UI state
+  const state = {
+    from: "",
+    mode: "",
+    depart: "",
+    ret: ""
+  };
+
+  function render() {
+    root.innerHTML = `
+      <div class="tb">
+        <div class="tbCard">
+          <p class="tbTitle">Malatya Ulaşım Asistanı</p>
+          <p class="tbSub">Nereden geleceğini ve ulaşım türünü seç — sana hazır linkler çıkarayım.</p>
+
+          <div class="tbRow">
+            <div>
+              <div class="tbQ">1) Nereden geliyorsun?</div>
+              <input class="tbIn" id="tbFrom" placeholder="Örn: İstanbul / Ankara / İzmir / Diyarbakır..." value="${state.from}">
+              <div class="tbSmall">Şehir adı yazman yeterli. (İstersen “IST” gibi havalimanı kodu da yazabilirsin.)</div>
+            </div>
+
+            <div>
+              <div class="tbQ">2) Ulaşım türü</div>
+              <div class="tbBtns">
+                <button class="btn secondary" id="tbPlane" type="button">✈️ Uçak</button>
+                <button class="btn ghost" id="tbRoad" type="button">🚌/🚗 Karayolu</button>
+                <button class="btn ghost" id="tbTrain" type="button">🚆 Tren</button>
+              </div>
+              <div class="tbSmall">Seçim: <b>${state.mode ? state.mode : "—"}</b></div>
+            </div>
+          </div>
+
+          <div style="height:8px;"></div>
+
+          <div class="tbRow">
+            <div>
+              <div class="tbQ">3) Geliş tarihi</div>
+              <input class="tbIn" id="tbDepart" type="date" value="${state.depart}">
+            </div>
+            <div>
+              <div class="tbQ">4) Dönüş tarihi (opsiyonel)</div>
+              <input class="tbIn" id="tbReturn" type="date" value="${state.ret}">
+            </div>
+          </div>
+
+          <div class="tbBtns" style="margin-top:12px;">
+            <button class="btn primary" id="tbBuild" type="button">Alternatifleri Göster</button>
+            <button class="btn ghost" id="tbReset" type="button">Sıfırla</button>
+          </div>
+
+          <div id="tbOut"></div>
+        </div>
+      </div>
+    `;
+
+    // bind
+    const $ = (id) => document.getElementById(id);
+    $("tbFrom").addEventListener("input", (e) => state.from = e.target.value);
+    $("tbDepart").addEventListener("change", (e) => state.depart = e.target.value);
+    $("tbReturn").addEventListener("change", (e) => state.ret = e.target.value);
+
+    $("tbPlane").addEventListener("click", () => { state.mode = "Uçak"; render(); });
+    $("tbRoad").addEventListener("click", () => { state.mode = "Karayolu"; render(); });
+    $("tbTrain").addEventListener("click", () => { state.mode = "Tren"; render(); });
+
+    $("tbReset").addEventListener("click", () => {
+      state.from = ""; state.mode = ""; state.depart = ""; state.ret = "";
+      render();
+    });
+
+    $("tbBuild").addEventListener("click", () => {
+      const from = (state.from || "").trim();
+      const depart = toISO(state.depart);
+      const ret = toISO(state.ret);
+
+      const out = $("tbOut");
+
+      if (!from) {
+        out.innerHTML = `<div class="note" style="margin-top:12px;">Lütfen önce <b>nereden geleceğini</b> yaz.</div>`;
+        return;
+      }
+      if (!state.mode) {
+        out.innerHTML = `<div class="note" style="margin-top:12px;">Lütfen <b>ulaşım türünü</b> seç.</div>`;
+        return;
+      }
+      if (!depart) {
+        out.innerHTML = `<div class="note" style="margin-top:12px;">Lütfen <b>geliş tarihini</b> seç.</div>`;
+        return;
+      }
+
+      // Linkler
+      const links = [];
+      if (state.mode === "Uçak") {
+        links.push({
+          title: "Uçuş alternatifleri (Google Flights)",
+          desc: "THY / AJet / Pegasus gibi tüm seçenekleri tek ekranda gör.",
+          url: googleFlightsLink(from, depart, ret)
+        });
+        links.push({
+          title: "Malatya Havalimanı (MLX) – bilgi",
+          desc: "Havalimanı ve ulaşım için harita.",
+          url: `https://www.google.com/maps/search/?api=1&query=${enc("Malatya Havalimanı MLX")}`
+        });
+      } else if (state.mode === "Karayolu") {
+        links.push({
+          title: "Otobüs alternatifleri (arama)",
+          desc: "Bilet siteleri ve firmalar için hızlı arama.",
+          url: obiletLink(from, depart, ret)
+        });
+        links.push({
+          title: "Araç ile yol tarifi (Google Maps)",
+          desc: "Kendi aracınla güzergâh ve süre.",
+          url: drivingDirectionsLink(from)
+        });
+      } else if (state.mode === "Tren") {
+        links.push({
+          title: "TCDD bilet arama (resmî bilgi)",
+          desc: "Sefer uygunluğunu kontrol et.",
+          url: tcddLink(from, depart)
+        });
+        links.push({
+          title: "Gerekirse karayolu alternatifi",
+          desc: "Otobüs seçeneklerini de karşılaştır.",
+          url: obiletLink(from, depart, ret)
+        });
+      }
+
+      // çıktı
+      out.innerHTML = `
+        <div class="tbLinks">
+          ${links.map(l => `
+            <div class="tbLinkBox">
+              <b>${l.title}</b>
+              <span>${l.desc}</span><br>
+              <a class="btn ghost" style="margin-top:8px;" href="${l.url}" target="_blank" rel="noopener">Aç</a>
+            </div>
+          `).join("")}
+        </div>
+        <div class="tbSmall">
+          <b>Not:</b> Saat ve fiyatlar sürekli değişebilir. Linkler seni doğrudan güncel arama ekranına götürür.
+        </div>
+      `;
+    });
+  }
+
+  render();
+})();
+    
   </script>
 </body>
 </html>
