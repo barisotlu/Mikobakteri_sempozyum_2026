@@ -602,10 +602,10 @@
 
   <div class="topbar" role="banner">
     <div class="inner">
-   <div class="brand">
-  <a href="#anasayfa" class="brandLogoLink" aria-label="Anasayfa">
+    <div class="brand">
+    <a href="#anasayfa" class="brandLogoLink" aria-label="Anasayfa">
     <img src="header_logo.png" alt="9. Ulusal Mikobakteri Sempozyumu - Logo">
-  </a>
+    </a>
       </div>
 
       <nav class="nav" aria-label="Site menüsü">
@@ -1128,6 +1128,34 @@
     ret: ""
   };
 })();
+/* Üst sol logo (brand) */
+.brand{
+  min-width: 240px; /* mevcut düzen bozulmasın */
+}
+
+.brandLogoLink{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+
+.brandLogoLink img{
+  height: 54px;       /* masaüstü ideal */
+  width: auto;
+  display:block;
+  border-radius: 14px;
+  background: rgba(255,255,255,.70);
+  border: 1px solid rgba(31,42,55,.10);
+  padding: 6px;
+  box-shadow: 0 10px 24px rgba(17,24,39,.08);
+}
+
+/* Mobilde biraz küçült */
+@media (max-width: 520px){
+  .brand{ min-width: 0; }
+  .brandLogoLink img{ height: 44px; border-radius: 12px; }
+}
+    
 </script>
 </body>
 </html>
