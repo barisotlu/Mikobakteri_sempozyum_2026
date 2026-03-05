@@ -548,6 +548,26 @@
   border:0;
   border-radius:18px;
 }
+.box{
+  position: relative;
+  overflow: hidden;
+}
+.box::after{
+  content:"";
+  position:absolute;
+  right:40px;
+  bottom:30px;
+
+  width:280px;
+  height:280px;
+
+  background-image:url("tb_watermark.png");
+  background-size:contain;
+  background-repeat:no-repeat;
+
+  opacity:0.06;
+  pointer-events:none;
+}
 
 @media (max-width: 900px){
   .contactGrid{ grid-template-columns:1fr; }
@@ -703,7 +723,7 @@
 
 <p class="announcement">
   <strong>9. Ulusal Mikobakteri Sempozyumu’na</strong> sözlü bildiri ile katılacak olan
-  derneğimiz üyesi <b>10 uzmanlık, doktora veya yüksek lisans öğrencisine</b> kongre katılım bursu verilecektir.
+  derneğimiz üyesi <b> 10 uzmanlık, doktora veya yüksek lisans öğrencisine </b> kongre katılım bursu verilecektir.
   <br>
   <span class="smallNote">(Konaklama ve ulaşım giderleri burs kapsamına dahil değildir.)</span>
 </p>
