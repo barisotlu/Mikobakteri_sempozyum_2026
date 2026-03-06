@@ -958,7 +958,7 @@ display:none;
           <h2>Bildiri Gönderimi</h2>
          
         </div>
-        <div class="box" id="guidelinesBox">
+        <div class="box" id="guidelinesBox" style="display:none;">
           <p>
             Bildiri gönderimi EasyChair sistemi üzerinden yapılmaktadır. Bildiri göndermek için aşağıdaki butonu kullanabilirsiniz.
           </p>
@@ -1236,15 +1236,15 @@ if(toggleBtn && box){
   toggleBtn.addEventListener("click", function(e){
     e.preventDefault();
 
-    if(box.style.display === "none"){
+    if(box.style.display === "none" || box.style.display === ""){
       box.style.display = "block";
       box.scrollIntoView({behavior:"smooth"});
     }else{
       box.style.display = "none";
     }
-
   });
 }
+
 
     
 </script>
