@@ -956,13 +956,13 @@
           <h2>Bildiri Gönderimi</h2>
          
         </div>
-        <div class="box">
+        <div class="box" id="guidelinesBox" style="display:none;">
           <p>
             Bildiri gönderimi EasyChair sistemi üzerinden yapılmaktadır. Bildiri göndermek için aşağıdaki butonu kullanabilirsiniz.
           </p>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
           <a class="btn primary" href="https://easychair.org/conferences/?conf=mikobakteri2026" target="_blank">Bildiri Gönder</a>
-          <a class="btn ghost" href="#">Yazım Kuralları</a>
+          <a class="btn ghost" href="#" id="toggleGuidelines">Yazım Kuralları</a>
           </div>
           <div class="note" style="margin-top:12px;">
                               <b>Bildiri Yazım Kuralları</b><br><br>
@@ -1225,7 +1225,25 @@
     ret: ""
   };
 })();
-  
+
+// Yazım kuralları aç / kapa
+const toggleBtn = document.getElementById("toggleGuidelines");
+const box = document.getElementById("guidelinesBox");
+
+if(toggleBtn && box){
+  toggleBtn.addEventListener("click", function(e){
+    e.preventDefault();
+
+    if(box.style.display === "none"){
+      box.style.display = "block";
+      box.scrollIntoView({behavior:"smooth"});
+    }else{
+      box.style.display = "none";
+    }
+  });
+}
+
+    
 </script>
 </body>
 </html>
