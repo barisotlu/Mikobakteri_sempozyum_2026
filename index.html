@@ -982,6 +982,13 @@ cursor:pointer;
 opacity:0.7;
 }
 
+.ibanCopy{
+font-size:18px;
+margin-top:6px;
+cursor:pointer;
+opacity:0.7;
+}
+
 .ibanCopy:hover{
 opacity:1;
 }
@@ -1530,6 +1537,8 @@ Türk Mikrobiyoloji Cemiyeti Derneği İktisadi İşletmesi
 </tr>
 
 <tr>
+<td style="padding:12px;"><b>IBAN</b></td>
+
 <td style="padding:12px; font-weight:700;">
 
 <span id="ibanText">TR34 0006 4000 0011 0491 4941 29</span>
@@ -1944,8 +1953,6 @@ if(toggle && nav){
 function copyIBAN(){
 const iban = document.getElementById("ibanText").innerText;
 navigator.clipboard.writeText(iban);
-}
-
 }
 </script>
 </body>
