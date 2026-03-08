@@ -1520,9 +1520,12 @@ Türk Mikrobiyoloji Cemiyeti Derneği İktisadi İşletmesi
 </tr>
 
 <tr>
-<td style="padding:12px;"><b>IBAN</b></td>
 <td style="padding:12px; font-weight:700;">
-TR34 0006 4000 0011 0491 4941 29
+<span id="ibanText">TR34 0006 4000 0011 0491 4941 29</span>
+
+<button onclick="copyIBAN()" class="btn ghost" style="margin-left:10px; padding:6px 10px; font-size:12px;">
+Kopyala
+</button>
 </td>
 </tr>
 
@@ -1926,7 +1929,15 @@ if(toggle && nav){
   });
 }
 
-    
+function copyIBAN(){
+
+const iban = document.getElementById("ibanText").innerText;
+
+navigator.clipboard.writeText(iban);
+
+alert("IBAN kopyalandı");
+
+}
 </script>
 </body>
 </html>
