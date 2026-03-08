@@ -1162,6 +1162,1170 @@ tmc@tmc-online.org
 </p>
 
 </div>
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>9. Ulusal Mikobakteri Sempozyumu | 4–5 Haziran 2026 | Malatya</title>
+  <meta name="description" content="9. Ulusal Mikobakteri Sempozyumu — 4–5 Haziran 2026, Malatya." />
+
+  <meta property="og:title" content="9. Ulusal Mikobakteri Sempozyumu" />
+  <meta property="og:description" content="4–5 Haziran 2026 • Malatya" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="afis_V4.jpg" />
+
+  <style>
+    :root{
+      /* Afişteki paletten esinlenilmiş (yaklaşık) */
+      --bg-0:#fbf9ff;
+      --bg-1:#f4effc;
+      --ink:#1f2a37;
+      --muted:#526071;
+
+      --blue:#222874;
+      --teal:#3a6d85;
+      --red:#a6312b;
+      --gold:#daa52d;
+
+      --card: rgba(255,255,255,.82);
+      --card2: rgba(255,255,255,.68);
+      --line: rgba(31,42,55,.12);
+      --shadow: 0 18px 50px rgba(17, 24, 39, .12);
+      --shadow2: 0 10px 28px rgba(17, 24, 39, .10);
+
+      --radius: 18px;
+      --max: 1120px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      *{ animation: none !important; transition: none !important; }
+    }
+
+    body{
+      margin:0;
+      font-family: var(--font);
+      color: var(--ink);
+      background:
+        radial-gradient(1100px 560px at 15% 10%, rgba(34,40,116,.10), transparent 60%),
+        radial-gradient(900px 520px at 85% 15%, rgba(58,109,133,.10), transparent 60%),
+        radial-gradient(820px 520px at 40% 90%, rgba(166,49,43,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 55%, var(--bg-0) 100%);
+      overflow-x: hidden;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    img{ max-width: 100%; display:block; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Skip link (erişilebilirlik) */
+    .skip{
+      position:absolute;
+      left:-999px;
+      top:10px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: 12px;
+      padding:10px 12px;
+      z-index: 9999;
+      box-shadow: var(--shadow2);
+    }
+    .skip:focus{ left: 12px; }
+
+    /* Üst bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(251,249,255,.72);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .topbar .inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 20px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 240px;
+    }
+    .mark{
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(34,40,116,.92), rgba(58,109,133,.85));
+      box-shadow: 0 12px 28px rgba(34,40,116,.18);
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .brand .t1{ font-weight: 900; line-height: 1.1; }
+    .brand .t2{ font-size: 12px; color: var(--muted); font-weight: 700; margin-top:2px; }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .nav a{
+      padding: 10px 10px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--muted);
+      border: 1px solid transparent;
+    }
+    .nav a:hover{
+      background: rgba(255,255,255,.65);
+      border-color: rgba(31,42,55,.10);
+      color: var(--ink);
+    }
+
+    .top-actions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content: flex-end;
+      min-width: 240px;
+      transition: all .18s ease;
+    }
+    .top-actions .btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(31,42,55,.14);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow2);
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: .2px;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 34px rgba(17,24,39,.14); }
+    .btn.primary{
+      border-color: rgba(166,49,43,.30);
+      background: linear-gradient(135deg, rgba(166,49,43,.96), rgba(218,165,45,.55));
+      color: #fff;
+    }
+    .btn.secondary{
+      border-color: rgba(34,40,116,.20);
+      background: linear-gradient(135deg, rgba(34,40,116,.95), rgba(58,109,133,.70));
+      color: #fff;
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.65);
+    }
+    .btn[aria-disabled="true"]{
+      opacity: .55;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* Hero */
+    .hero{
+      padding: 26px 0 14px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .card{
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .heroMain{
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .heroMain:before{
+      content:"";
+      position:absolute;
+      inset: -140px -140px auto auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(166,49,43,.16), transparent 60%);
+      pointer-events:none;
+    }
+    .heroMain:after{
+      content:"";
+      position:absolute;
+      inset: auto auto -170px -160px;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(34,40,116,.12), transparent 60%);
+      pointer-events:none;
+    }
+  .top-actions .btn{
+  min-width:120px;
+  justify-content:center;
+  text-align:center;
+    }
+
+
+    .logos{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .logo{
+      height: 42px;
+      width: auto;
+      border-radius: 12px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(31,42,55,.10);
+      padding: 6px 10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 10px 24px rgba(17,24,39,.08);
+    }
+    .logo img{
+      height: 28px;
+      width: auto;
+      display:block;
+    }
+
+    .logoStrip{
+      height: 52px;
+      width: auto;
+      max-width: 100%;
+      border-radius: 14px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(31,42,55,.10);
+      padding: 6px 10px;
+      box-shadow: 0 10px 24px rgba(17,24,39,.08);
+    }
+
+    .logoText{
+      font-weight: 900;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .25px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.65);
+      border: 1px solid rgba(31,42,55,.10);
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .25px;
+      margin-bottom: 12px;
+    }
+    .dot{
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(218,165,45,.18);
+    }
+
+    h1{
+      margin: 0 0 10px;
+      font-size: 44px;
+      line-height: 1.08;
+      letter-spacing: -0.6px;
+    }
+    .num{
+      display:inline-block;
+      font-weight: 1000;
+      background: linear-gradient(135deg, var(--red), rgba(166,49,43,.75));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .sub{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+
+    .metaRow{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.65);
+      border: 1px solid rgba(31,42,55,.10);
+      font-weight: 900;
+      font-size: 12px;
+      color: var(--ink);
+    }
+    .chip span{ color: var(--muted); font-weight: 800; }
+
+    .heroActions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .quick{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .q{
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(31,42,55,.10);
+    }
+    .q .k{ font-size: 12px; font-weight: 900; color: var(--muted); }
+    .q .v{ margin-top: 6px; font-size: 14px; font-weight: 950; }
+
+    .countdown{
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(31,42,55,.10);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .cdTitle{
+      font-weight: 950;
+      letter-spacing: .2px;
+    }
+    .cdBoxes{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+    }
+    .cdBox{
+      min-width: 64px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(31,42,55,.10);
+      background: rgba(255,255,255,.72);
+      text-align:center;
+      box-shadow: 0 8px 18px rgba(17,24,39,.06);
+    }
+    .cdNum{ font-size: 18px; font-weight: 1000; color: var(--blue); }
+    .cdLab{ font-size: 11px; font-weight: 900; color: var(--muted); }
+
+    /* Sağ kart () */
+    .poster{
+      padding: 14px;
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .poster .frame{
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(31,42,55,.10);
+      background: linear-gradient(135deg, rgba(34,40,116,.08), rgba(166,49,43,.06));
+      box-shadow: 0 16px 40px rgba(17,24,39,.12);
+    }
+    .poster img{
+      width: 100%;
+      height: auto;
+    }
+    .poster .cap{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    /* Bölümler */
+    section{
+      scroll-margin-top: 88px;
+      padding: 22px 0;
+    }
+    .secHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 12px 0 10px;
+    }
+    .secHead h2{
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.2px;
+    }
+    .secHead .hint{
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .box{
+      padding: 16px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow2);
+    }
+    .box h3{
+      margin: 0 0 8px;
+      font-size: 15px;
+      letter-spacing: -0.15px;
+    }
+    .box p, .box li{
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .box ul{
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    .timeline{
+      display:grid;
+      gap: 10px;
+    }
+    .tItem{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(31,42,55,.10);
+      background: rgba(255,255,255,.62);
+    }
+    .tDot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      margin-top: 6px;
+      background: var(--teal);
+      box-shadow: 0 0 0 6px rgba(58,109,133,.12);
+      flex: 0 0 auto;
+    }
+    .tBody b{ display:block; font-weight: 950; }
+    .tBody span{ color: var(--muted); font-size: 13px; font-weight: 800; }
+
+    .note{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px dashed rgba(34,40,116,.25);
+      background: rgba(34,40,116,.05);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      font-weight: 750;
+    }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 52px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footRow{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    /* Mobil */
+    @media (max-width: 980px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      h1{ font-size: 38px; }
+      .quick{ grid-template-columns: 1fr 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .brand, .top-actions{ min-width: auto; }
+      .nav{ display: none; } /* mobilde sade kalsın */
+    }
+    .contactGrid{
+  display:grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.mapBox iframe{
+  width:100%;
+  height:100%;
+  min-height: 360px;
+  border:0;
+  border-radius:18px;
+}
+.box{
+  position: relative;
+  overflow: hidden;
+}
+.box::after{
+  content:"";
+  position:absolute;
+  right:40px;
+  bottom:30px;
+
+  width:280px;
+  height:280px;
+
+  background-image:url("tb_watermark.png");
+  background-size:contain;
+  background-repeat:no-repeat;
+
+  opacity:0.06;
+  pointer-events:none;
+}
+
+@media (max-width: 900px){
+  .contactGrid{ grid-template-columns:1fr; }
+  .mapBox iframe{ min-height: 340px; }
+}
+/* Tooltip: sadece afiş üzerine gelince görünür */
+.poster .frame{ position: relative; }
+
+.poster .tooltip{
+  position: absolute;
+  left: 12px;
+  right: 12px;              /* afişin enini geçmez */
+  bottom: 12px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(31,42,55,.14);
+  box-shadow: 0 18px 40px rgba(17,24,39,.14);
+  color: var(--ink);
+  font-size: 11.5px;
+  line-height: 1.55;
+  font-weight: 400;
+
+  opacity: 0;               /* <-- gizle */
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+  max-height: 62%;
+  overflow: auto;
+}
+
+/* hover veya klavye ile odaklanınca göster */
+.poster .frame:hover .tooltip,
+.poster .frame:focus-within .tooltip{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.poster .tooltip b{
+  display:block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  letter-spacing: .2px;
+  color: var(--blue);
+}
+.brandLogoLink img{
+  height: 120px;
+  width: auto;
+  display: block;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+.tbBanner{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  object-position:center;
+  opacity:0.85;
+  margin-bottom:0px;
+  border-radius:18px;
+  border:1px solid rgba(31,42,55,.10);
+  box-shadow:0 14px 34px rgba(17,24,39,.12);
+}
+.tbBanner{ margin-bottom:-10px; }
+
+.note{
+  padding:22px 26px;
+  border-radius:18px;
+  border:1px dashed rgba(34,40,116,.22);
+  background: rgba(255,255,255,.65);
+
+  font-size:15px;
+  line-height:1.9;
+  color:#2f3a46;
+  font-weight:500;
+  letter-spacing:.2px;
+
+  box-shadow:0 12px 30px rgba(17,24,39,.08);
+}
+.announcement{
+  margin: 24px 0 30px 0;
+  font-size: 15px;
+  line-height:1.9;
+  color: var(--ink);
+  font-weight: 500;
+  max-width: 720px;
+}
+  .heroMain p{
+  line-height: 2.05;
+}
+#guidelinesBox{
+display:none;
+}
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#icerik">İçeriğe atla</a>
+
+  <div class="topbar" role="banner">
+    <div class="inner">
+    <div class="brand">
+    <a href="#anasayfa" class="brandLogoLink" aria-label="Anasayfa">
+    <img src="header_logo_v2.png" alt="9. Ulusal Mikobakteri Sempozyumu - Logo">
+    </a>
+      </div>
+
+      <nav class="nav" aria-label="Site menüsü">
+        <a href="#anasayfa">Anasayfa</a>
+        <a href="#davet">Davet</a>
+        <a href="#kurullar">Kurullar</a>
+        <a href="#konular">Ana Konular</a>
+        <a href="#program">Bilimsel Program</a>
+        <a href="#tarihler">Önemli Tarihler</a>
+        <a href="#bildiri">Bildiri Gönderimi</a>
+        <a href="#kayit">Kayıt & Konaklama</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+
+      <div class="top-actions">
+      <a class="btn ghost" href="#bildiri">Bildiri</a>
+      <a class="btn primary" href="#kayit" id="btnTopRegister">Kayıt</a>
+     </div>
+       </div>
+
+  <main id="icerik">
+    <div class="wrap">
+      <header id="anasayfa" class="hero">
+        <div class="heroGrid">
+          <div class="card heroMain">
+
+            <div class="kicker"><span class="dot" aria-hidden="true"></span> Türk Mikrobiyoloji Cemiyeti • Malatya • 2026</div>
+
+            <h1><span class="num">9.</span> Ulusal Mikobakteri Sempozyumu</h1>
+<p class="sub">
+  <b>4–5 Haziran 2026</b> tarihlerinde <b>Malatya</b>’da düzenlenecek sempozyumumuz için duyurular,
+  önemli tarihler, program ve başvuru bağlantıları bu sayfada yayınlanacaktır.
+</p>
+
+<p class="announcement">
+  9. Ulusal Mikobakteri Sempozyumu’na sözlü bildiri ile katılacak olan <br>
+  derneğimiz üyesi 10 uzmanlık, doktora veya yüksek lisans öğrencisine kongre katılım bursu verilecektir.
+  <br> (Konaklama ve ulaşım giderleri burs kapsamına dahil değildir.)
+</p>
+            
+              
+            </p>
+
+            <div class="metaRow" aria-label="Etkinlik bilgisi">
+              <div class="chip">📅 <b>4–5 Haziran 2026</b></div>
+              <div class="chip">📍 <b>Malatya</b> <span>(Türkiye)</span></div>
+              <div class="chip"> <b>Türk Mikrobiyoloji Cemiyeti</b></div>
+            </div>
+
+            <div class="heroActions">
+              <a class="btn secondary" href="#program" id="btnProgram">Bilimsel Program</a>
+              <a class="btn primary" href="#bildiri" id="btnAbstract">Bildiri Gönderimi</a>
+              <a class="btn ghost" href="#kayit" id="btnRegister">Kayıt & Konaklama</a>
+              <a class="btn ghost" href="#iletisim">İletişim</a>
+            </div>
+
+
+            <div class="countdown" aria-label="Geri sayım">
+              <div>
+                <div class="cdTitle">Sempozyuma kalan süre</div>
+                <div style="color:var(--muted); font-weight:800; font-size:12px; margin-top:3px;">
+                  Hedef tarih: 4 Haziran 2026
+                </div>
+              </div>
+              <div class="cdBoxes">
+                <div class="cdBox"><div class="cdNum" id="cdD">—</div><div class="cdLab">Gün</div></div>
+                <div class="cdBox"><div class="cdNum" id="cdH">—</div><div class="cdLab">Saat</div></div>
+                <div class="cdBox"><div class="cdNum" id="cdM">—</div><div class="cdLab">Dk</div></div>
+                <div class="cdBox"><div class="cdNum" id="cdS">—</div><div class="cdLab">Sn</div></div>
+              </div>
+            </div>
+
+          </div>
+
+          <aside class="card poster">
+            <div class="frame">
+              <!-- i repo’ya .jpg adıyla yüklersen burada otomatik görünür -->
+              <img src="afis_V4.png" alt="9. Ulusal Mikobakteri Sempozyumu afişi" onerror="this.style.display='none'">
+              <div class="tooltip" role="note" aria-label="Afiş açıklaması">
+  <b></b>
+  Malatya’nın antik adı Melid (Melitene) olup Geç Hitit döneminde önemli bir siyasal ve kültürel merkezdir.
+  Görselde yer alan Kral Tarhunza figürü, Melid Krallığı hükümdarlarına ait kabartma ve yazıtlarla ilişkilendirilen
+  arkeolojik buluntulara dayanmaktadır. Anadolu aslanı olarak bilinen aslan tasvirleri ise bölgenin tarihsel fauna
+  varlığına ve Geç Hitit sanatındaki simgesel betimlemelere atıf yapmaktadır. Bu figürler, 2021 yılında UNESCO Dünya
+  Mirası Listesi’ne alınan Arslantepe Höyüğü kazılarında ortaya çıkarılan Geç Hitit dönemi eserleriyle bağlantılıdır.
+</div>
+              <div style="padding:14px; display:none;" id="posterFallback">
+                <div style="font-weight:950; color:var(--blue); font-size:14px;">Afiş görseli henüz eklenmedi</div>
+                <div class="cap" style="margin-top:6px;">
+                  İstersen afiş dosyasını <b>afis.jpg</b> adıyla repo’ya yükle; bu alan otomatik dolacak.
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </header>
+        <img src="tb_history_banner_v1.png" class="tbBanner" alt="Tüberküloz araştırmalarının tarihi: Koch, Ehrlich, Ziehl, Neelsen, Calmette ve Guérin">
+
+      <section id="davet">
+        <div class="secHead">
+          <h2>Davet</h2>
+                    
+        </div>
+        
+        <div class="box">         
+          
+          <div class="note">
+          Değerli Meslektaşlarımız, <br> <br> 
+          Türk Mikrobiyoloji Cemiyeti (TMC) bünyesinde faaliyet gösteren Mikobakteri Çalışma Grubu, tüberküloz ve Mikobakteriyoloji alanında çalışan meslektaşlarımız arasındaki iletişimi ve bilgi paylaşımını arttırmak amacıyla kurulmuştur. Kurulduğu günden bu yana tüberküloz tanısında standartları yükseltmek ve ulusal tüberküloz kontrol programına bilimsel katkı sunmak amacıyla çalışmalarını sürdürmektedir. <br> Bu amaçla Sağlık Bakanlığı Halk sağlığı Genel Müdürlüğü ve başta tıbbi mikrobiyoloji camiası olmak üzere ilgili tüm uzmanlık alanları ile iş birliği içinde bilimsel toplantılar, rehberler, laboratuvar ziyaretleri, eğitim faaliyetleri ve farkındalık etkinlikleri gibi pek çok faaliyete imza atmaktadır.  
+          Bu yıl, bilimsel birikimimizi paylaşmak ve yeni iş birliklerine kapı aralamak amacıyla 9. Ulusal Mikobakteri Sempozyumu’nu gerçekleştirecek olmanın heyecanını yaşıyoruz.<br><br> 
+          9. Ulusal Mikobakteri Sempozyumu Türk Mikrobiyoloji Cemiyeti Mikobakteri Çalışma Grubu ve İnönü Üniversitesi Tıp Fakültesi Tıbbi Mikrobiyoloji Anabilim Dalı iş birliği ile 4-5 Haziran 2026 tarihleri arasında İnönü Üniversitesi Turgut Özal Kongre ve Kültür Merkezi, Malatya’da gerçekleştirilecektir. <br><br> 
+          Konusunda deneyimli konuşmacıları, araştırmacıları, Halk Sağlığı Genel Müdürlüğü yetkilileri ve sektör temsilcilerini bir araya getirerek hem ülkemizdeki hem de dünyadaki mikobakteriyoloji çalışmalarını derinlemesine değerlendirme fırsatı sunacak verimli bir sempozyum olmasını umut ediyoruz. 
+          Doğu’nun en vakur ve en misafirperver duraklarından biri, kayısısının tadı damağınızda, insanının sıcaklığı yüreğinizde kalacak olan, tarihin sıfır noktasına komşu, Arslantepe’nin bilgeliğiyle yoğrulmuş bir şehir, Malatya görüşebilmek dileği ile, <br><br> 
+          Sempozyum ile ilgili detaylı bilgiye http://www.mikobakteri2026.org adresinden ulaşabilirsiniz.<br> <br> 
+          
+          TMC Mikobakteri Çalışma Grubu <br> 
+          Yürütme Kurulu
+
+          </div>
+        </div>
+      </section>
+
+      <section id="kurullar">
+        <div class="secHead">
+          <h2>Kurullar</h2>
+
+        </div>
+
+        <div class="grid3">
+  
+          <div class="box">
+            <h3>Sempozyum Başkanı</h3>
+            <p><b>Nuri Özkütük</b><br><span class="muted">Manisa Celal Bayar Üniversitesi</span></p>
+            <p><b>Yusuf Yakupoğulları</b><br><span class="muted">İnönü Üniversitesi</span></p>
+          </div>
+          <div class="box">
+            <h3>Sempozyum Sekreteri</h3>
+            <p><b>Barış Otlu</b><br><span class="muted">İnönü Üniversitesi</span></p>
+          </div>
+        </div>
+
+        <div style="height:12px;"></div>
+
+        <div class="grid2">
+          <div class="box">
+            <h3>Düzenleme Kurulu</h3>
+            <ul>
+              <li>Gönül ASLAN</li>
+              <li>Begüm KAYAR</li>
+              <li>Ahmet ARSLANTÜRK</li>
+              <li>Yeliz TANRIVERDİ ÇAYCI</li>
+              <li>Taylan BOZOK</li>
+              <li>Elif Seren TANRIVERDİ</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>Bilimsel Kurul</h3>
+            <ul>
+              <li>Nuran ESEN</li>
+              <li>Aydan ÖZKÜTÜK</li>
+              <li>J. Sedef GÖÇMEN</li>
+              <li>Deniz GAZEL</li>
+              <li>Ahmet YILMAZ ÇOBAN</li>
+              <li>Ali ALBAY</li>
+              <li>Tanıl KOCAGÖZ</li>
+              <li>Gülnur TARHAN</li>
+              <li>Nilay UÇARMAN</li>
+              <li>Rıza DURMAZ</li>
+              <li>Can BİÇMEN</li>
+              <li>Özgül KISA</li>
+              <li>Hülya ŞİMŞEK</li>
+              <li>Banu SANCAK</li>
+              <li>Cengiz ÇAVUŞOĞLU</li>
+              <li>Zeynep SARIBAŞ</li>
+              <li>Süheyla SÜRÜCÜOĞLU</li>
+              <li>Dilek ŞATANA</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="height:12px;"></div>
+        <div class="note">
+         
+        </div>
+      </section>
+
+      <section id="konular">
+        <div class="secHead">
+          <h2>Ana Konular</h2>
+          
+        </div>
+        <div class="grid2">
+          <div class="box">
+            <h3>Klinik & Laboratuvar</h3>
+            <ul>
+              <li>Tanı algoritmaları ve laboratuvar yaklaşımları</li>
+              <li>Hızlı tanı yöntemleri (moleküler / kültür tabanlı)</li>
+              <li>İlaç duyarlılık testleri ve yorumlama</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>Epidemiyoloji & Halk Sağlığı</h3>
+            <ul>
+              <li>Gözetim, salgın araştırmaları, moleküler epidemiyoloji</li>
+              <li>Direnç mekanizmaları ve klinik yansımaları</li>
+              <li>NTM (tüberküloz dışı mikobakteriler) yaklaşımları</li>
+            </ul>
+          </div>
+        </div>
+        <div style="height:12px;"></div>
+        <div class="note">
+         
+        </div>
+      </section>
+
+      <section id="program">
+        <div class="secHead">
+          <h2>Bilimsel Program</h2>
+       
+        </div>
+        <div class="box">
+          <p>
+            Bilimsel program hazırlanıyor.
+          </p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+            <a class="btn secondary" href="#" id="programPdfBtn" aria-disabled="true">Program PDF (yakında)</a>
+            <a class="btn ghost" href="#tarihler">Önemli Tarihler</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="tarihler">
+        <div class="secHead">
+          <h2>Önemli Tarihler</h2>
+         
+        </div>
+        <div class="timeline">
+          <div class="tItem">
+            <div class="tDot" aria-hidden="true"></div>
+            <div class="tBody">
+              <b>Sempozyum</b>
+              <span>4–5 Haziran 2026 • Malatya</span>
+            </div>
+          </div>
+        
+          <div class="tItem">
+            <div class="tDot" aria-hidden="true" style="background:var(--red); box-shadow:0 0 0 6px rgba(166,49,43,.12)"></div>
+            <div class="tBody">
+              <b>Bildiri son gönderim</b>
+              <span>20 Mayıs 2026</span>
+            </div>
+          </div>
+          <div class="tItem">
+            <div class="tDot" aria-hidden="true"></div>
+            <div class="tBody">
+              <b>Kabul bildirimi</b>
+              <span>24 Mayıs 2026</span>
+            </div>
+          </div>
+          <div class="tItem">
+            <div class="tDot" aria-hidden="true"></div>
+            <div class="tBody">
+              <b>Erken kayıt son tarih</b>
+              <span>10 Mayıs 2026</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+                    <section id="bildiri">
+                    
+                    <div class="secHead">
+                    <h2>Bildiri Gönderimi</h2>
+                    </div>
+                    
+                    <div class="box">
+                    
+                    <p>
+                    Bildiri gönderimi EasyChair sistemi üzerinden yapılmaktadır.
+                    </p>
+                    
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+                    
+                    <a class="btn primary"
+                    href="https://easychair.org/conferences/?conf=mikobakteri2026"
+                    target="_blank">
+                    Bildiri Gönder
+                    </a>
+                    
+                    <a class="btn ghost" href="#" id="toggleGuidelines">
+                    Yazım Kuralları
+                    </a>
+                    
+                    </div>
+                    
+                    </div>
+                    
+                    
+                    <div class="box" id="guidelinesBox">
+                    
+                    <div class="note">
+                    <b>Bildiri Yazım Kuralları</b>
+                    <br><br>
+                    
+                    • Bildiriler Türkçe veya İngilizce hazırlanabilir.<br>
+                    • Özet metni en fazla <b>300 kelime</b> olmalıdır.<br>
+                    • Özet tek paragraf halinde yazılmalıdır.<br>
+                    • Özet içinde <b>kaynak gösterimi yapılmamalıdır</b>.<br>
+                    • Tablo veya şekil kullanılmamalıdır.<br>
+                    • Bildiri daha önce yayınlanmamış olmalıdır.<br><br>
+                    
+                    <b>Özet İçeriği</b><br>
+                    Amaç – Yöntem – Bulgular – Sonuç<br><br>
+                    
+                    <b>Anahtar Kelimeler</b><br>
+                    3–5 anahtar kelime.<br><br>
+                    
+                    <b>Değerlendirme</b><br>
+                    Bilimsel kalite<br>
+                    Özgünlük<br>
+                    Yöntemsel uygunluk<br>
+                    Sempozyum konularına uygunluk<br>
+                    Sunum potansiyeli
+                    
+                    </div>
+                    
+                    </div>
+                    
+                    </section>
+
+      <section id="kayit">
+        <div class="secHead">
+          <h2>Kayıt & Konaklama</h2>
+          
+        </div>
+        <div class="grid2">
+<div class="box">
+
+<h3>Kayıt Ücretleri</h3>
+
+<table style="width:100%; border-collapse:collapse; margin-top:14px; font-size:14px;">
+
+<thead>
+<tr style="background:var(--blue); color:white;">
+<th style="padding:8px 12px; text-align:left;">Kayıt Tipi</th>
+<th style="padding:8px 12px;">Erken Kayıt</th>
+<th style="padding:8px 12px;">Geç Kayıt</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr style="border-bottom:1px solid var(--line);">
+<td style="padding:12px;">
+Asistan / Doktora Öğrencisi / Yüksek Lisans Öğrencisi
+</td>
+<td style="padding:12px; font-weight:700; color:var(--gold);">
+3000 TL
+</td>
+<td style="padding:12px;">
+3500 TL
+</td>
+</tr>
+
+<tr style="border-bottom:1px solid var(--line);">
+<td style="padding:12px;">
+Uzman / Öğretim Üyesi
+</td>
+<td style="padding:12px; font-weight:700; color:var(--gold);">
+3500 TL
+</td>
+<td style="padding:12px;">
+4000 TL
+</td>
+</tr>
+
+<tr style="border-bottom:3px solid #cfd5df;">
+<td style="padding:12px;">
+Endüstri Temsilcisi
+</td>
+<td style="padding:12px; font-weight:700; color:var(--gold);">
+4000 TL
+</td>
+<td style="padding:12px;">
+4500 TL
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<p style="margin-top:10px; font-size:13px; color:var(--muted);">
+<b>Not:</b> Kayıt ücretlerine KDV dahildir.
+</p>
+
+<p style="margin-top:12px;">
+<b>Erken kayıt son tarihi:</b> 10 Mayıs 2026<br>
+<b>Geç kayıt başlangıcı:</b>  11 Mayıs 2026
+</p>
+
+
+<h3 style="margin-top:24px;">Kayıt Ücretine Dahil Hizmetler</h3>
+
+<ul style="margin-top:8px;">
+<li>Sempozyum dokümanları</li>
+<li>Öğle yemekleri</li>
+<li>4 Haziran akşam yemeği</li>
+<li>Çay ve kahve ikramları</li>
+</ul>
+
+
+<h3 style="margin-top:24px;">Banka Bilgileri</h3>
+
+<table style="width:100%; border-collapse:collapse; margin-top:12px; font-size:14px;">
+
+<tr style="border-bottom:1px solid var(--line);">
+<td style="padding:12px; width:35%;"><b>Hesap Adı</b></td>
+<td style="padding:12px;">
+Türk Mikrobiyoloji Cemiyeti Derneği İktisadi İşletmesi
+</td>
+</tr>
+
+<tr style="border-bottom:1px solid var(--line);">
+<td style="padding:12px;"><b>Banka / Şube</b></td>
+<td style="padding:12px;">
+İş Bankası Şehremini Şubesi
+</td>
+</tr>
+
+<tr style="border-bottom:1px solid var(--line);">
+<td style="padding:12px;"><b>Şube Kodu</b></td>
+<td style="padding:12px;">1049</td>
+</tr>
+
+<tr style="border-bottom:1px solid var(--line);">
+<td style="padding:12px;"><b>Hesap No</b></td>
+<td style="padding:12px;">1494129</td>
+</tr>
+
+<tr>
+<td style="padding:12px;"><b>IBAN</b></td>
+<td style="padding:12px; font-weight:700;">
+TR34 0006 4000 0011 0491 4941 29
+</td>
+</tr>
+
+</table>
+
+
+<div style="
+margin-top:18px;
+padding:16px;
+border-radius:14px;
+background:rgba(34,40,116,.06);
+border:1px dashed rgba(34,40,116,.25);
+font-size:13px;
+line-height:1.6;
+">
+
+<b>Önemli Not</b><br>
+Sempozyum ücreti yatırılırken açıklama kısmına  
+<b>“Ad Soyad – 9. Ulusal Mikobakteri Sempozyumu”</b>  
+ifadesi mutlaka yazılmalıdır.  
+Tüm kayıtlar ödeme ile kesinlik kazanır.
+
+</div>
+
+
+<p style="margin-top:16px; font-size:14px;">
+Kayıt ve ödeme ile ilgili sorular için:<br>
+<a href="mailto:tmc@tmc-online.org"
+style="font-weight:700; color:var(--blue);">
+tmc@tmc-online.org
+</a>
+</p>
+
+</div>
           <div class="box">
             <h3>Konaklama</h3>
             <p>Otel listesi ve anlaşma bilgileri hazır olduğunda buraya ekleyebiliriz.</p>
@@ -1169,6 +2333,238 @@ tmc@tmc-online.org
               <a class="btn ghost" href="#" id="accomBtn" aria-disabled="true">Konaklama Bilgileri (yakında)</a>
             </div>
           </div>
+        </div>
+      </section>
+      <section id="iletisim">
+    <div class="panel" style="padding:16px;">
+  <div class="contactGrid">
+    
+    <div class="mapBox">
+      <iframe
+        src="https://www.google.com/maps?q=İnönü Üniversitesi Turgut Özal Kongre ve Kültür Merkezi&output=embed"
+        loading="lazy"
+        allowfullscreen="">
+      </iframe>
+    </div>
+
+    <div class="contactBox box">
+      <p>
+        Sekretarya/iletişim e-postasını ekleyince burada tıklanabilir hale getireceğim.
+        <br>
+        <span style="font-weight:800; color:var(--muted);">Uyarı:</span>
+        Kişisel e-postanı (özellikle kurumsal adresini) herkese açık yazmak istemezsen,
+        “info@…” gibi bir adres kullanmak daha doğru olur.
+      </p>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+        <a class="btn secondary" href="#" id="emailBtn" aria-disabled="true">E-posta (yakında)</a>
+        <a class="btn ghost" href="#anasayfa">Yukarı</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+      </section>
+
+      <footer class="wrap">
+        <div class="footRow">
+          <div>© 2026 • 9. Ulusal Mikobakteri Sempozyumu • Malatya</div>
+          <div>GitHub Pages üzerinde yayınlanmaktadır.</div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    // === Kolay ayarlar (linkler boş kalırsa butonlar pasif kalır) ===
+    const LINKS = {
+      abstractSubmission: "",  // örn: "https://... (bildiri sistemi)"
+      guidelinesPdf: "",       // örn: "yazim_kurallari.pdf" (repo'ya yükleyince)
+      registration: "",        // örn: "https://... (kayıt formu)"
+      accommodation: "",       // örn: "konaklama.pdf" veya bir web linki
+      programPdf: "",          // örn: "program.pdf" (repo'ya yükleyince)
+      contactEmail: ""         // örn: "info@ornek.org"
+    };
+
+    // 4 Haziran 2026'ya geri sayım (saat belirtilmediği için gün başlangıcı kullanıldı)
+    const COUNTDOWN_TO = "2026-06-04T00:00:00+03:00";
+
+    function setBtn(id, url){
+      const el = document.getElementById(id);
+      if(!el) return;
+      if(url && url.trim().length > 0){
+        el.href = url;
+        el.setAttribute("aria-disabled","false");
+        el.removeAttribute("aria-disabled");
+        el.style.opacity = "1";
+      }else{
+        el.href = "#";
+        el.setAttribute("aria-disabled","true");
+        el.addEventListener("click", (e)=>{ e.preventDefault(); });
+      }
+    }
+
+    // Buton bağla
+    setBtn("abstractBtn", LINKS.abstractSubmission);
+    setBtn("btnAbstract", LINKS.abstractSubmission);
+    setBtn("btnTopAbstract", LINKS.abstractSubmission);
+
+    setBtn("guidelinesBtn", LINKS.guidelinesPdf);
+
+    setBtn("registerBtn", LINKS.registration);
+    setBtn("btnRegister", LINKS.registration);
+    setBtn("btnTopRegister", LINKS.registration);
+
+    setBtn("accomBtn", LINKS.accommodation);
+    setBtn("programPdfBtn", LINKS.programPdf);
+
+    // E-posta butonu
+    if(LINKS.contactEmail && LINKS.contactEmail.includes("@")){
+      const mail = "mailto:" + LINKS.contactEmail;
+      setBtn("emailBtn", mail);
+      document.getElementById("emailBtn").textContent = LINKS.contactEmail;
+    }else{
+      setBtn("emailBtn", "");
+    }
+
+    // Afiş fallback
+    const posterImg = document.querySelector('.poster img');
+    const fallback = document.getElementById("posterFallback");
+    if(posterImg){
+      posterImg.addEventListener("error", ()=>{ if(fallback) fallback.style.display="block"; });
+      // eğer görüntü yoksa (bazı durumlarda error geç gelmez) kontrol:
+      setTimeout(()=>{
+        if(posterImg.naturalWidth === 0 && fallback) fallback.style.display="block";
+      }, 400);
+    }
+
+    // Geri sayım
+    const target = new Date(COUNTDOWN_TO);
+    const cdD = document.getElementById("cdD");
+    const cdH = document.getElementById("cdH");
+    const cdM = document.getElementById("cdM");
+    const cdS = document.getElementById("cdS");
+
+    function tick(){
+      const now = new Date();
+      let diff = target - now;
+      if(diff < 0) diff = 0;
+
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff / (1000*60*60)) % 24);
+      const m = Math.floor((diff / (1000*60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      cdD.textContent = String(d);
+      cdH.textContent = String(h).padStart(2,"0");
+      cdM.textContent = String(m).padStart(2,"0");
+      cdS.textContent = String(s).padStart(2,"0");
+    }
+    tick();
+    setInterval(tick, 1000);
+// =============================
+// ULAŞIM ASISTANI (offline)
+// =============================
+(function () {
+  const root = document.getElementById("travelBot");
+  if (!root) return;
+
+  // Basit UI stilleri (mevcut tasarıma uyumlu)
+  const style = document.createElement("style");
+  style.textContent = `
+    .tb{ display:grid; gap:12px; }
+    .tbRow{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    @media (max-width: 900px){ .tbRow{ grid-template-columns:1fr; } }
+    .tbCard{
+      padding:14px; border-radius:16px;
+      border:1px solid rgba(31,42,55,.10);
+      background: rgba(255,255,255,.62);
+    }
+    .tbTitle{ font-weight:950; margin:0 0 6px; }
+    .tbSub{ color: var(--muted); font-weight:800; font-size:13px; margin:0 0 10px; }
+    .tbQ{ font-weight:900; margin:0 0 8px; }
+    .tbIn{
+      width:100%; padding:11px 12px; border-radius:14px;
+      border:1px solid rgba(31,42,55,.14);
+      background: rgba(255,255,255,.85);
+      font: inherit;
+      outline: none;
+    }
+    .tbIn:focus{ box-shadow: 0 0 0 4px rgba(34,40,116,.10); }
+    .tbBtns{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .tbSmall{ color: var(--muted); font-size:12px; font-weight:800; margin-top:8px; line-height:1.5; }
+    .tbLinks{ display:grid; gap:10px; margin-top:12px; }
+    .tbLinkBox{
+      padding:12px; border-radius:14px;
+      border:1px solid rgba(31,42,55,.10);
+      background: rgba(255,255,255,.72);
+    }
+    .tbLinkBox b{ display:block; margin-bottom:4px; }
+    .tbLinkBox span{ color: var(--muted); font-size:12.5px; font-weight:800; }
+  `;
+  document.head.appendChild(style);
+
+  // Basit yardımcılar
+  const enc = encodeURIComponent;
+  const toISO = (d) => {
+    // input type="date" -> "YYYY-MM-DD" zaten ISO; boşsa ""
+    return (d || "").trim();
+  };
+
+  // Link üreticiler
+  function googleFlightsLink(fromCityOrCode, departDate, returnDate) {
+    // Google Flights'ta en sağlam yöntem genel arama sayfasına parametreli gitmek:
+    // Burada "from" serbest metin. "MLX" veya "Malatya" ile aratıyoruz.
+    const q = `uçuş ${fromCityOrCode} Malatya ${departDate}${returnDate ? " " + returnDate : ""}`;
+    return `https://www.google.com/search?q=${enc(q)}&tbm=flm`;
+  }
+  function obiletLink(fromCity, departDate, returnDate) {
+    // obilet doğrudan deep-link her zaman stabil değil; arama sayfasına yönlendiriyoruz.
+    const q = `otobüs bileti ${fromCity} Malatya ${departDate}${returnDate ? " " + returnDate : ""} obilet`;
+    return `https://www.google.com/search?q=${enc(q)}`;
+  }
+  function tcddLink(fromCity, departDate) {
+    // TCDD e-bilet için en güvenli: resmi siteye + arama ipucu.
+    const q = `TCDD bilet ${fromCity} Malatya ${departDate}`;
+    return `https://www.google.com/search?q=${enc(q)}`;
+  }
+  function drivingDirectionsLink(fromCity) {
+    // Google Maps sürüş tarifi
+    return `https://www.google.com/maps/dir/?api=1&origin=${enc(fromCity)}&destination=${enc("Malatya")}&travelmode=driving`;
+  }
+
+  // UI state
+  const state = {
+    from: "",
+    mode: "",
+    depart: "",
+    ret: ""
+  };
+})();
+
+// Yazım kuralları aç / kapa
+const toggleBtn = document.getElementById("toggleGuidelines");
+const box = document.getElementById("guidelinesBox");
+
+if(toggleBtn && box){
+  toggleBtn.addEventListener("click", function(e){
+    e.preventDefault();
+
+    if(box.style.display === "none" || box.style.display === ""){
+      box.style.display = "block";
+      box.scrollIntoView({behavior:"smooth"});
+    }else{
+      box.style.display = "none";
+    }
+  });
+}
+
+
+    
+</script>
+</body>
+</html>
         </div>
       </section>
       <section id="iletisim">
