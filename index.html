@@ -828,16 +828,30 @@ font-weight:700;
 font-size:14px;
 letter-spacing:.2px;
 }
+.closeAnnouncement{
+position:relative;
+right:14px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:16px;
+font-weight:900;
+opacity:.8;
+}
 
+.closeAnnouncement:hover{
+opacity:1;
+}
     
   </style>
 </head>
 
 <body>
 
-  <div class="announcementBar">
-  📢 Bildiri gönderim sistemi açılmıştır. Son gönderim tarihi: <b>20 Mayıs 2026</b>.
-  </div>
+<div class="announcementBar" id="announcementBar">
+📢 Bildiri gönderim sistemi açılmıştır. Son gönderim tarihi: <b>20 Mayıs 2026</b>.
+<span class="closeAnnouncement" id="closeAnnouncement">✕</span>
+</div>
   
   <a class="skip" href="#icerik">İçeriğe atla</a>
 
