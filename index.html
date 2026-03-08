@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="tr">
 <head>  
@@ -626,14 +625,13 @@
       .grid3{ grid-template-columns: 1fr; }
       .brand, .top-actions{ min-width: auto; }
       .nav{ display: none; } /* mobilde sade kalsın */
-      }
-      .contactGrid{
-    display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 18px;
-    align-items: stretch;
-      }
-    
+    }
+    .contactGrid{
+  display:grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+  align-items: stretch;
+}
 @media (max-width:768px){
 
 .heroGrid{
@@ -654,20 +652,20 @@ gap:8px;
 width:100%;
 text-align:center;
 }
+
 .top-actions{
 display:flex;
-flex-direction:row;
-justify-content:center;
-gap:10px;
-width:100%;
-margin-top:8px;
+flex-direction:column;
+align-items:stretch;
+gap:6px;
+min-width:auto;
 }
 
 .top-actions .btn{
-width:48%;
+width:100%;
 text-align:center;
 }
- 
+  
 .metaRow{
 flex-direction:column;
 align-items:flex-start;
@@ -895,6 +893,10 @@ letter-spacing:.2px;
   derneğimiz üyesi 10 uzmanlık, doktora veya yüksek lisans öğrencisine kongre katılım ve konaklama bursu verilecektir.
   <br> (Ulaşım giderleri burs kapsamına dahil değildir.)
 </p>
+            
+              
+            </p>
+
             <div class="metaRow" aria-label="Etkinlik bilgisi">
               <div class="chip">📅 <b>4–5 Haziran 2026</b></div>
               <div class="chip">📍 <b>Malatya</b> <span>(Türkiye)</span></div>
@@ -1661,6 +1663,12 @@ Dr. Elif Seren Tanrıverdi, seren.tanriverdi@inonu.edu.tr
     }
     tick();
     setInterval(tick, 1000);
+// =============================
+// ULAŞIM ASISTANI (offline)
+// =============================
+(function () {
+  const root = document.getElementById("travelBot");
+  if (!root) return;
 
   // Basit UI stilleri (mevcut tasarıma uyumlu)
   const style = document.createElement("style");
