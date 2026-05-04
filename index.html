@@ -1006,7 +1006,161 @@ font-weight:600;
 #kayit{
 scroll-margin-top:120px;
 }
+.programActions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:12px 0 18px;
+}
 
+.programOfficial{
+  display:grid;
+  gap:26px;
+}
+
+.programSheet{
+  background:white;
+  border:1px solid rgba(31,42,55,.12);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.programHeader{
+  padding:22px 24px;
+  text-align:center;
+  background:linear-gradient(135deg, rgba(34,40,116,.96), rgba(58,109,133,.78));
+  color:white;
+}
+
+.programHeader h3{
+  margin:0;
+  font-size:22px;
+  font-weight:950;
+}
+
+.programHeader .programSub{
+  margin-top:6px;
+  font-size:14px;
+  font-weight:750;
+  opacity:.95;
+}
+
+.programDayTitle{
+  padding:14px 22px;
+  background:rgba(218,165,45,.16);
+  border-bottom:1px solid rgba(31,42,55,.10);
+  font-size:17px;
+  font-weight:950;
+  color:var(--blue);
+}
+
+.programTable{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+
+.programTable th{
+  background:rgba(34,40,116,.08);
+  color:var(--blue);
+  text-align:left;
+  padding:12px 16px;
+  font-weight:950;
+  border-bottom:1px solid rgba(31,42,55,.12);
+}
+
+.programTable td{
+  vertical-align:top;
+  padding:14px 16px;
+  border-bottom:1px solid rgba(31,42,55,.10);
+}
+
+.timeCol{
+  width:150px;
+  font-weight:950;
+  color:var(--blue);
+  white-space:nowrap;
+}
+
+.programItemTitle{
+  font-weight:900;
+  color:var(--ink);
+  margin-bottom:5px;
+}
+
+.programChair{
+  color:var(--teal);
+  font-weight:750;
+  margin-bottom:7px;
+}
+
+.programTalk{
+  margin:4px 0;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.programBreak{
+  background:rgba(218,165,45,.11);
+}
+
+.programBreak .programItemTitle{
+  color:#8a6414;
+  text-transform:uppercase;
+  letter-spacing:.3px;
+}
+
+.programSatellite{
+  background:rgba(166,49,43,.055);
+}
+
+.programFooter{
+  padding:12px 18px;
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+  background:rgba(31,42,55,.035);
+  border-top:1px solid rgba(31,42,55,.08);
+}
+
+@media (max-width:768px){
+  .programTable,
+  .programTable thead,
+  .programTable tbody,
+  .programTable th,
+  .programTable td,
+  .programTable tr{
+    display:block;
+    width:100%;
+  }
+
+  .programTable thead{
+    display:none;
+  }
+
+  .programTable tr{
+    border-bottom:1px solid rgba(31,42,55,.12);
+  }
+
+  .programTable td{
+    border-bottom:none;
+  }
+
+  .timeCol{
+    width:100%;
+    padding-bottom:4px !important;
+    color:var(--red);
+  }
+
+  .programHeader h3{
+    font-size:19px;
+  }
+
+  .programHeader .programSub{
+    font-size:13px;
+  }
+}
     
   </style>
 </head>
@@ -1245,21 +1399,96 @@ scroll-margin-top:120px;
         </div>
       </section>
 
-      <section id="program">
-        <div class="secHead">
-          <h2>Bilimsel Program</h2>
-       
+<section id="program">
+  <div class="secHead">
+    <h2>Bilimsel Program</h2>
+    <div class="hint">4–5 Haziran 2026</div>
+  </div>
+
+  <div class="programActions">
+    <a class="btn secondary" href="mikobakteri2026_bilimsel_program.pdf" target="_blank">
+      Program PDF İndir / Aç
+    </a>
+
+    <a class="btn ghost" href="#tarihler">
+      Önemli Tarihler
+    </a>
+  </div>
+
+  <div class="programOfficial">
+
+    <div class="programSheet">
+      <div class="programHeader">
+        <h3>9. Ulusal Mikobakteri Sempozyumu</h3>
+        <div class="programSub">
+          BİLİMSEL PROGRAM | 4–5 Haziran 2026 • Malatya • İnönü Üniversitesi Turgut Özal Kongre ve Kültür Merkezi
         </div>
-        <div class="box">
-          <p>
-            Bilimsel program hazırlanıyor.
-          </p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-            <a class="btn secondary" href="#" id="programPdfBtn" aria-disabled="true">Program PDF (yakında)</a>
-            <a class="btn ghost" href="#tarihler">Önemli Tarihler</a>
-          </div>
-        </div>
-      </section>
+      </div>
+
+      <div class="programDayTitle">
+        4 Haziran 2026, Perşembe
+      </div>
+
+      <table class="programTable">
+        <thead>
+          <tr>
+            <th>SAAT</th>
+            <th>PROGRAM</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="timeCol">09:00–09:30</td>
+            <td>
+              <div class="programItemTitle">KAYIT VE AÇILIŞ</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="timeCol">09:30–10:30</td>
+            <td>
+              <div class="programItemTitle">Panel: Geçmişte ve Günümüzde Tüberküloz</div>
+              <div class="programChair">Oturum Başkanı: Candan ÇİÇEK - Yusuf YAKUPOĞULLARI</div>
+              <div class="programTalk">• Tarihte Tüberküloz — Barış OTLU</div>
+              <div class="programTalk">• Türkiye’de ve Dünya’da Tüberküloz — Senem YAZICI</div>
+            </td>
+          </tr>
+
+          <tr class="programBreak">
+            <td class="timeCol">10:30–11:00</td>
+            <td>
+              <div class="programItemTitle">KAHVE ARASI</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="timeCol">11:00–12:00</td>
+            <td>
+              <div class="programItemTitle">Panel: Tüberküloz İmmünopatogenezi ve Bağışıklama</div>
+              <div class="programChair">Oturum Başkanı: Nuran ESEN, Selahattin ATMACA</div>
+              <div class="programTalk">• Mikobakteriyel Enfeksiyonlarda Konağa Ait Faktörler — Deniz GAZEL</div>
+              <div class="programTalk">• Tüberkülozda Bağışıklık Yanıtı ve Reaktivasyon Mekanizmaları — Yeliz Tanrıverdi ÇAYCI</div>
+              <div class="programTalk">• Bağışıklamada Güncel Durum ve Hedefler — Yıldız TÜTÜNCÜ</div>
+            </td>
+          </tr>
+
+          <tr class="programBreak">
+            <td class="timeCol">12:00–13:30</td>
+            <td>
+              <div class="programItemTitle">ÖĞLE YEMEĞİ</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="programFooter">
+        www.mikobakteri2026.org | 9. Ulusal Mikobakteri Sempozyumu | Malatya 2026
+      </div>
+    </div>
+
+  </div>
+</section>
 
       <section id="tarihler">
         <div class="secHead">
