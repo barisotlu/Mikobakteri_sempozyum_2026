@@ -1161,7 +1161,99 @@ scroll-margin-top:120px;
     font-size:13px;
   }
 }
-    
+    .scholarshipArea{
+  position:relative;
+}
+
+.scholarshipArea p{
+  margin-top:0;
+  margin-bottom:12px;
+}
+
+.scholarshipBtn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(166,49,43,.28);
+  background:linear-gradient(135deg, rgba(166,49,43,.96), rgba(218,165,45,.62));
+  color:white;
+  font-weight:900;
+  font-size:13px;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(166,49,43,.16);
+}
+
+.scholarshipBtn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 14px 30px rgba(166,49,43,.22);
+}
+
+.scholarshipPopup{
+  display:none;
+  position:absolute;
+  left:0;
+  top:100%;
+  margin-top:10px;
+  z-index:40;
+
+  width:min(560px, calc(100vw - 60px));
+  padding:18px 20px;
+  border-radius:18px;
+
+  background:rgba(255,255,255,.96);
+  border:1px solid rgba(31,42,55,.14);
+  box-shadow:0 22px 55px rgba(17,24,39,.20);
+  backdrop-filter:blur(10px);
+
+  font-size:13.5px;
+  line-height:1.75;
+  color:var(--ink);
+}
+
+.scholarshipPopup.open{
+  display:block;
+}
+
+.scholarshipPopupTitle{
+  font-size:15px;
+  font-weight:950;
+  color:var(--blue);
+  margin-bottom:10px;
+  padding-bottom:8px;
+  border-bottom:1px solid rgba(31,42,55,.10);
+}
+
+.scholarshipPopup p{
+  margin:0 0 10px;
+}
+
+.scholarshipPopup a{
+  color:var(--blue);
+  font-weight:900;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+@media (max-width:768px){
+  .scholarshipPopup{
+    position:fixed;
+    left:16px;
+    right:16px;
+    top:auto;
+    bottom:20px;
+    width:auto;
+    max-height:70vh;
+    overflow:auto;
+  }
+
+  .scholarshipBtn{
+    width:100%;
+    border-radius:14px;
+  }
+}
   </style>
 </head>
 
@@ -1226,12 +1318,52 @@ scroll-margin-top:120px;
   önemli tarihler, program ve başvuru bağlantıları bu sayfada yayınlanacaktır.
 </p>
 
-<p class="announcement">
-  9. Ulusal Mikobakteri Sempozyumu’na sözlü bildiri ile katılacak olan <br>
-  derneğimiz üyesi 10 uzmanlık, doktora veya yüksek lisans öğrencisine sempozyum katılım ve konaklama bursu verilecektir.
-  Sözlü sunum birincisine TMC 2026 Kongresine konaklama bursu verilecektir. 
-  <br> (Ulaşım giderleri burs kapsamına dahil değildir.)
-</p>
+<div class="announcement scholarshipArea" id="scholarshipArea">
+
+  <p>
+    9. Ulusal Mikobakteri Sempozyumu’na sözlü bildiri ile katılacak olan 
+    derneğimiz üyesi <b>10 uzmanlık, doktora veya yüksek lisans öğrencisine</b> 
+    sempozyum katılım ve konaklama bursu verilecektir.
+    Sözlü sunum birincisine <b>TMC 2026 Kongresine konaklama bursu</b> verilecektir.
+    <br>
+    <span style="font-size:13px; color:var(--muted);">
+      Ulaşım giderleri burs kapsamına dahil değildir.
+    </span>
+  </p>
+
+  <button class="scholarshipBtn" id="scholarshipBtn" type="button">
+    🎓 Burs koşulları
+  </button>
+
+  <div class="scholarshipPopup" id="scholarshipPopup" aria-hidden="true">
+    <div class="scholarshipPopupTitle">Burs Başvuru Koşulları</div>
+
+    <p><b>Değerli Katılımcılar,</b></p>
+
+    <p>
+      Burs başvurusu yapabilmek için katılımcının sempozyuma kayıt olması,
+      sözlü bildiri göndermesi ve burs başvurusu yaptığını belirten bir e-postayı
+      <a href="mailto:info@mikobakteri2026.org">info@mikobakteri2026.org</a>
+      adresine iletmesi gerekmektedir.
+    </p>
+
+    <p>
+      Burs değerlendirmesi, kabul edilen sözlü bildiriler arasından yapılacaktır.
+      Burs almaya hak kazanan katılımcıların sempozyum kayıt ücreti derneğimiz
+      tarafından iade edilecek ve konaklama sağlanacaktır.
+    </p>
+
+    <p>
+      Konaklama, İnönü Üniversitesi M. Şahin Nalbant Konukevi’nde iki kişilik
+      odalarda sağlanacaktır. Konukevi, toplantı salonuna yürüme mesafesindedir.
+    </p>
+
+    <p>
+      Sonuçlar, bildiri değerlendirme süreci tamamlandıktan sonra ilan edilecektir.
+    </p>
+  </div>
+
+</div>
             
               
             <div class="metaRow" aria-label="Etkinlik bilgisi">
@@ -2353,6 +2485,49 @@ function copyIBAN(){
 const iban = document.getElementById("ibanText").innerText;
 navigator.clipboard.writeText(iban);
 }
+const scholarshipArea = document.getElementById("scholarshipArea");
+const scholarshipBtn = document.getElementById("scholarshipBtn");
+const scholarshipPopup = document.getElementById("scholarshipPopup");
+
+if(scholarshipArea && scholarshipBtn && scholarshipPopup){
+
+  function openScholarshipPopup(){
+    scholarshipPopup.classList.add("open");
+    scholarshipPopup.setAttribute("aria-hidden", "false");
+  }
+
+  function closeScholarshipPopup(){
+    scholarshipPopup.classList.remove("open");
+    scholarshipPopup.setAttribute("aria-hidden", "true");
+  }
+
+  scholarshipBtn.addEventListener("click", function(e){
+    e.stopPropagation();
+
+    if(scholarshipPopup.classList.contains("open")){
+      closeScholarshipPopup();
+    }else{
+      openScholarshipPopup();
+    }
+  });
+
+  scholarshipArea.addEventListener("mouseleave", function(){
+    closeScholarshipPopup();
+  });
+
+  document.addEventListener("click", function(e){
+    if(!scholarshipArea.contains(e.target)){
+      closeScholarshipPopup();
+    }
+  });
+
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      closeScholarshipPopup();
+    }
+  });
+}
+    
 </script>
 </body>
 </html>
