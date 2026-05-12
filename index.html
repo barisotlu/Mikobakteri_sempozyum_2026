@@ -1302,7 +1302,40 @@ scroll-margin-top:120px;
   transform:translateY(-2px);
   box-shadow:0 20px 44px rgba(17,24,39,.28);
 }
+.abstractSummaryCard{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:14px;
+  border-radius:16px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(31,42,55,.10);
+  box-shadow:0 10px 24px rgba(17,24,39,.08);
+}
 
+.abstractSummaryIcon{
+  width:38px;
+  height:38px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(34,40,116,.08);
+  font-size:20px;
+}
+
+.abstractSummaryCard b{
+  color:var(--blue);
+  font-weight:950;
+}
+
+.abstractSummaryCard p{
+  margin:4px 0 10px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+  font-weight:750;
+}
 @media (max-width:768px){
   .backToTop{
     right:16px;
@@ -1349,6 +1382,7 @@ scroll-margin-top:120px;
         <a href="#kurullar">Kurullar</a>
         <a href="#konular">Ana Konular</a>
         <a href="#program">Bilimsel Program</a>
+        <a href="#ozetler">Bildiri Özetleri</a>
         <a href="#tarihler">Önemli Tarihler</a>
         <a href="#bildiri">Bildiri Gönderimi</a>
         <a href="#kayit">Kayıt & Konaklama</a>
@@ -1434,6 +1468,7 @@ scroll-margin-top:120px;
             <div class="heroActions">
               <a class="btn secondary" href="#program" id="btnProgram">Bilimsel Program</a>
               <a class="btn primary" href="#bildiri" id="btnAbstract">Bildiri Gönderimi</a>
+              <a class="btn ghost" href="#ozetler">Bildiri Özetleri</a>
               <a class="btn ghost" href="#kayit" id="btnRegister">Kayıt & Konaklama</a>
               <a class="btn ghost" href="#iletisim">İletişim</a>
             </div>
@@ -1468,6 +1503,21 @@ scroll-margin-top:120px;
   Mirası Listesi’ne alınan Arslantepe Höyüğü kazılarında ortaya çıkarılan Geç Hitit dönemi eserleriyle bağlantılıdır.
 </div>
             </div>
+            <div class="abstractSummaryCard">
+  <div class="abstractSummaryIcon">📘</div>
+
+  <div>
+    <b>Bildiri Özetleri</b>
+
+    <p>
+      Kabul edilen bildirilerin özet kitabı burada yayınlanacaktır.
+    </p>
+
+    <a class="btn ghost" href="#ozetler">
+      Özetler
+    </a>
+  </div>
+</div>
           </aside>
         </div>
       </header>
@@ -2021,7 +2071,35 @@ Word Bildiri Şablonu
 </div>
                     
                     </section>
+<section id="ozetler">
 
+  <div class="secHead">
+    <h2>Bildiri Özetleri</h2>
+  </div>
+
+  <div class="box">
+
+    <p>
+      Kabul edilen bildirilerin özet kitabı değerlendirme süreci tamamlandıktan sonra
+      bu sayfada yayınlanacaktır.
+    </p>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+
+      <a class="btn ghost"
+         href="#"
+         aria-disabled="true"
+         onclick="return false;">
+
+        Yakında yayınlanacak
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
       <section id="kayit">
         <div class="secHead">
           <h2>Kayıt & Konaklama</h2>
