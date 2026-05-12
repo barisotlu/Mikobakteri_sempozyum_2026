@@ -1238,8 +1238,6 @@ scroll-margin-top:120px;
   font-weight:900;
   text-decoration:underline;
   text-underline-offset:3px;
-};
-  }
 }
     .scholarshipBackdrop{
   display:none;
@@ -1252,6 +1250,16 @@ scroll-margin-top:120px;
 
 .scholarshipBackdrop.open{
   display:block;
+}
+    .scholarshipList{
+  margin:10px 0 0 18px;
+  padding:0;
+}
+
+.scholarshipList li{
+  margin-bottom:10px;
+  color:var(--ink);
+  line-height:1.75;
 }
   </style>
 </head>
@@ -1301,7 +1309,7 @@ scroll-margin-top:120px;
      <a class="btn primary" href="#kayit">Kayıt</a>
      </div>
        </div>
-
+    </div>
   <main id="icerik">
     <div class="wrap">
       <header id="anasayfa" class="hero">
@@ -2514,9 +2522,9 @@ if(scholarshipBtn && scholarshipPopup && scholarshipBackdrop){
     }
   });
 
-  scholarshipBackdrop.addEventListener("mouseenter", function(){
-    closeScholarshipPopup();
-  });
+scholarshipPopup.addEventListener("mouseleave", function(){
+  closeScholarshipPopup();
+});
 
   scholarshipBackdrop.addEventListener("click", function(){
     closeScholarshipPopup();
