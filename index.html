@@ -1193,23 +1193,26 @@ scroll-margin-top:120px;
 
 .scholarshipPopup{
   display:none;
-  position:absolute;
-  left:0;
-  top:100%;
-  margin-top:10px;
-  z-index:40;
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  z-index:9999;
 
-  width:min(560px, calc(100vw - 60px));
-  padding:18px 20px;
-  border-radius:18px;
+  width:min(620px, calc(100vw - 32px));
+  max-height:78vh;
+  overflow:auto;
 
-  background:rgba(255,255,255,.96);
-  border:1px solid rgba(31,42,55,.14);
-  box-shadow:0 22px 55px rgba(17,24,39,.20);
-  backdrop-filter:blur(10px);
+  padding:22px 24px;
+  border-radius:20px;
 
-  font-size:13.5px;
-  line-height:1.75;
+  background:rgba(255,255,255,.98);
+  border:1px solid rgba(31,42,55,.16);
+  box-shadow:0 28px 80px rgba(17,24,39,.28);
+  backdrop-filter:blur(12px);
+
+  font-size:14px;
+  line-height:1.8;
   color:var(--ink);
 }
 
@@ -1218,16 +1221,16 @@ scroll-margin-top:120px;
 }
 
 .scholarshipPopupTitle{
-  font-size:15px;
+  font-size:16px;
   font-weight:950;
   color:var(--blue);
-  margin-bottom:10px;
-  padding-bottom:8px;
+  margin-bottom:12px;
+  padding-bottom:10px;
   border-bottom:1px solid rgba(31,42,55,.10);
 }
 
 .scholarshipPopup p{
-  margin:0 0 10px;
+  margin:0 0 12px;
 }
 
 .scholarshipPopup a{
@@ -1235,24 +1238,20 @@ scroll-margin-top:120px;
   font-weight:900;
   text-decoration:underline;
   text-underline-offset:3px;
+};
+  }
+}
+    .scholarshipBackdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9998;
+  background:rgba(31,42,55,.22);
+  backdrop-filter:blur(2px);
 }
 
-@media (max-width:768px){
-  .scholarshipPopup{
-    position:fixed;
-    left:16px;
-    right:16px;
-    top:auto;
-    bottom:20px;
-    width:auto;
-    max-height:70vh;
-    overflow:auto;
-  }
-
-  .scholarshipBtn{
-    width:100%;
-    border-radius:14px;
-  }
+.scholarshipBackdrop.open{
+  display:block;
 }
   </style>
 </head>
@@ -1334,6 +1333,7 @@ scroll-margin-top:120px;
   <button class="scholarshipBtn" id="scholarshipBtn" type="button">
     🎓 Burs koşulları
   </button>
+  <div class="scholarshipBackdrop" id="scholarshipBackdrop"></div>
 
   <div class="scholarshipPopup" id="scholarshipPopup" aria-hidden="true">
     <div class="scholarshipPopupTitle">Burs Başvuru Koşulları</div>
@@ -2488,16 +2488,19 @@ navigator.clipboard.writeText(iban);
 const scholarshipArea = document.getElementById("scholarshipArea");
 const scholarshipBtn = document.getElementById("scholarshipBtn");
 const scholarshipPopup = document.getElementById("scholarshipPopup");
+const scholarshipBackdrop = document.getElementById("scholarshipBackdrop");
 
-if(scholarshipArea && scholarshipBtn && scholarshipPopup){
+if(scholarshipBtn && scholarshipPopup && scholarshipBackdrop){
 
   function openScholarshipPopup(){
     scholarshipPopup.classList.add("open");
+    scholarshipBackdrop.classList.add("open");
     scholarshipPopup.setAttribute("aria-hidden", "false");
   }
 
   function closeScholarshipPopup(){
     scholarshipPopup.classList.remove("open");
+    scholarshipBackdrop.classList.remove("open");
     scholarshipPopup.setAttribute("aria-hidden", "true");
   }
 
@@ -2511,14 +2514,12 @@ if(scholarshipArea && scholarshipBtn && scholarshipPopup){
     }
   });
 
-  scholarshipArea.addEventListener("mouseleave", function(){
+  scholarshipBackdrop.addEventListener("mouseenter", function(){
     closeScholarshipPopup();
   });
 
-  document.addEventListener("click", function(e){
-    if(!scholarshipArea.contains(e.target)){
-      closeScholarshipPopup();
-    }
+  scholarshipBackdrop.addEventListener("click", function(){
+    closeScholarshipPopup();
   });
 
   document.addEventListener("keydown", function(e){
