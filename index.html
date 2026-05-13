@@ -1265,19 +1265,20 @@ scroll-margin-top:120px;
   position:fixed;
   right:22px;
   bottom:22px;
-  z-index:9997;
+  z-index:10050;
 
-  width:48px;
-  height:48px;
+  width:52px;
+  height:52px;
   border-radius:999px;
 
   border:1px solid rgba(31,42,55,.16);
   background:linear-gradient(135deg, rgba(34,40,116,.96), rgba(58,109,133,.82));
   color:white;
 
-  font-size:24px;
+  font-size:28px;
   font-weight:950;
   line-height:1;
+  text-decoration:none;
 
   display:flex;
   align-items:center;
@@ -1285,32 +1286,22 @@ scroll-margin-top:120px;
 
   cursor:pointer;
   box-shadow:0 16px 36px rgba(17,24,39,.22);
-
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(12px);
-  transition:opacity .2s ease, transform .2s ease, visibility .2s ease;
-}
-
-.backToTop.show{
-  opacity:1;
-  visibility:visible;
-  transform:translateY(0);
 }
 
 .backToTop:hover{
   transform:translateY(-2px);
   box-shadow:0 20px 44px rgba(17,24,39,.28);
 }
-.abstractSummaryCard{
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-  padding:14px;
-  border-radius:16px;
-  background:rgba(255,255,255,.72);
-  border:1px solid rgba(31,42,55,.10);
-  box-shadow:0 10px 24px rgba(17,24,39,.08);
+
+@media (max-width:768px){
+  .backToTop{
+    right:16px;
+    bottom:76px;
+    width:54px;
+    height:54px;
+    font-size:28px;
+  }
+}
 }
 
 .abstractSummaryIcon{
@@ -1348,7 +1339,7 @@ scroll-margin-top:120px;
   </style>
 </head>
 
-<body>
+<body id="top">
 
   <div class="announcementBar">
   📢 Bildiri gönderim sistemi açılmıştır. Son gönderim tarihi: <b>20 Mayıs 2026</b>
@@ -2422,9 +2413,9 @@ Dr. Elif Seren Tanrıverdi, seren.tanriverdi@inonu.edu.tr
 
     </div>
   </main>
-<button id="backToTop" class="backToTop" type="button" aria-label="Sayfanın en üstüne çık">
+<a href="#top" id="backToTop" class="backToTop" aria-label="Sayfanın en üstüne çık">
   ↑
-</button>
+</a>
   <script>
     // === Kolay ayarlar (linkler boş kalırsa butonlar pasif kalır) ===
     const LINKS = {
@@ -2668,29 +2659,7 @@ scholarshipPopup.addEventListener("mouseleave", function(){
     }
   });
 }
-const backToTop = document.getElementById("backToTop");
-
-if(backToTop){
-
-  function toggleBackToTop(){
-    if(window.scrollY > 300){
-      backToTop.classList.add("show");
-    }else{
-      backToTop.classList.remove("show");
-    }
-  }
-
-  window.addEventListener("scroll", toggleBackToTop);
-
-  backToTop.addEventListener("click", function(){
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-
-  toggleBackToTop();
-}    
+   
 </script>
 </body>
 </html>
