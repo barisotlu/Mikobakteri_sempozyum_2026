@@ -1759,7 +1759,8 @@ scroll-margin-top:120px;
     <div class="programItemTitle">Sözel Bildiri Oturumları</div>
     <div class="programChair">Eş zamanlı üç ayrı salonda gerçekleştirilecektir.</div>
 
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px;">
+    <div class="oralSessionsGrid"
+     style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px;">
 
       <div style="padding:12px; border-radius:14px; background:rgba(34,40,116,.06); border:1px solid rgba(31,42,55,.10);">
         <div style="font-weight:950; color:var(--blue); margin-bottom:6px;">Mavi Salon</div>
@@ -1792,6 +1793,14 @@ scroll-margin-top:120px;
       </div>
 
     </div>
+    <div class="oralPdfButtonArea">
+  <a class="btn secondary"
+     href="sozel_bildiri_programi.pdf"
+     target="_blank"
+     rel="noopener">
+    Ayrıntılı Sözel Bildiri Programı PDF
+  </a>
+</div>
   </td>
 </tr>
         </tbody>
@@ -2696,6 +2705,25 @@ scholarshipPopup.addEventListener("mouseleave", function(){
       closeScholarshipPopup();
     }
   });
+}
+.oralPdfButtonArea{
+  margin-top:14px;
+  display:flex;
+  justify-content:center;
+}
+
+@media (max-width:768px){
+  .oralSessionsGrid{
+    grid-template-columns:1fr !important;
+  }
+
+  .oralPdfButtonArea{
+    justify-content:flex-start;
+  }
+
+  .oralPdfButtonArea .btn{
+    width:100%;
+  }
 }
    
 </script>
