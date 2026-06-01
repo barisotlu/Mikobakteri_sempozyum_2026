@@ -1335,6 +1335,10 @@ scroll-margin-top:120px;
     height:52px;
     font-size:26px;
   }
+  @media (max-width:768px){
+  .programTable td div[style*="grid-template-columns:repeat(3,1fr)"]{
+  grid-template-columns:1fr !important;
+  }
 }
   </style>
 </head>
@@ -1750,10 +1754,44 @@ scroll-margin-top:120px;
 </tr>
 
 <tr>
-  <td class="timeCol">16:30–17:30</td>
+  <td class="timeCol">16:30–18:00</td>
   <td>
-    <div class="programItemTitle">Sözel Bildiriler</div>
-    <div class="programChair">Oturum Başkanları: Aydan ÖZKÜTÜK, Pınar SAĞIROĞLU</div>
+    <div class="programItemTitle">Sözel Bildiri Oturumları</div>
+    <div class="programChair">Eş zamanlı üç ayrı salonda gerçekleştirilecektir.</div>
+
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px;">
+
+      <div style="padding:12px; border-radius:14px; background:rgba(34,40,116,.06); border:1px solid rgba(31,42,55,.10);">
+        <div style="font-weight:950; color:var(--blue); margin-bottom:6px;">Mavi Salon</div>
+        <div class="programTalk"><b>Sözlü Bildiri Oturumu</b> — Tanı, Moleküler Testler ve Laboratuvar Performansı</div>
+        <div class="programTalk"><b>Moderatörler:</b> Aydan ÖZKÜTÜK, Pınar SAĞIROĞLU</div>
+        <div class="programTalk" style="margin-top:8px;">
+          <b>Bildiri Numaraları:</b><br>
+          36, 07, 08, 17, 18, 20, 21, 23, 33, 26, 37
+        </div>
+      </div>
+
+      <div style="padding:12px; border-radius:14px; background:rgba(166,49,43,.055); border:1px solid rgba(31,42,55,.10);">
+        <div style="font-weight:950; color:var(--red); margin-bottom:6px;">Pembe Salon</div>
+        <div class="programTalk"><b>Sözlü Bildiri Oturumu</b> — Klinik Olgular, TDM ve Retrospektif Klinik Seriler</div>
+        <div class="programTalk"><b>Moderatörler:</b> Yasemin ÜSTÜNDAĞ, Funda MEMİŞOĞLU</div>
+        <div class="programTalk" style="margin-top:8px;">
+          <b>Bildiri Numaraları:</b><br>
+          09, 10, 16, 19, 22, 34, 35, 38, 39, 11, 12
+        </div>
+      </div>
+
+      <div style="padding:12px; border-radius:14px; background:rgba(218,165,45,.12); border:1px solid rgba(31,42,55,.10);">
+        <div style="font-weight:950; color:#8a6414; margin-bottom:6px;">Turuncu Salon</div>
+        <div class="programTalk"><b>Sözlü Bildiri Oturumu</b> — Direnç, Genomik, İlaç Duyarlılığı ve Deneysel Çalışmalar</div>
+        <div class="programTalk"><b>Moderatörler:</b> Ali ALBAY, Taylan BOZOK</div>
+        <div class="programTalk" style="margin-top:8px;">
+          <b>Bildiri Numaraları:</b><br>
+          27, 28, 06, 13, 14, 29, 24, 25, 30, 31
+        </div>
+      </div>
+
+    </div>
   </td>
 </tr>
         </tbody>
