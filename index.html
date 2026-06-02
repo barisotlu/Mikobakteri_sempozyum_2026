@@ -1334,11 +1334,32 @@ scroll-margin-top:120px;
     width:52px;
     height:52px;
     font-size:26px;
+  }  
   }
   @media (max-width:768px){
   .programTable td div[style*="grid-template-columns:repeat(3,1fr)"]{
   grid-template-columns:1fr !important;
   }
+    }
+.oralPdfButtonArea{
+  margin-top:14px;
+  display:flex;
+  justify-content:center;
+}
+
+@media (max-width:768px){
+  .oralSessionsGrid{
+    grid-template-columns:1fr !important;
+  }
+
+  .oralPdfButtonArea{
+    justify-content:flex-start;
+  }
+
+  .oralPdfButtonArea .btn{
+    width:100%;
+  }
+}
 }
   </style>
 </head>
@@ -2708,26 +2729,7 @@ scholarshipPopup.addEventListener("mouseleave", function(){
       closeScholarshipPopup();
     }
   });
-}
-.oralPdfButtonArea{
-  margin-top:14px;
-  display:flex;
-  justify-content:center;
-}
 
-@media (max-width:768px){
-  .oralSessionsGrid{
-    grid-template-columns:1fr !important;
-  }
-
-  .oralPdfButtonArea{
-    justify-content:flex-start;
-  }
-
-  .oralPdfButtonArea .btn{
-    width:100%;
-  }
-}
    
 </script>
 </body>
